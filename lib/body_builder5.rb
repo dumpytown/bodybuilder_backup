@@ -25,8 +25,7 @@ module BodyBuilder5
 	# as methods following the pattern #tag_name(opt_arg1, opt_arg1) for <tag_name>,
 	# tag_name_ for </tag_name> and #_tag_name_ for <tag_name></tag_name>.
 	class HeMan5
-		# HTML5 constants
-		GLOBAL_ATTRIBUTES = [] # FIXME this isn't implemented in the draft yet (exiquio)
+		GLOBAL_ATTRIBUTES = [] # FIXME this isn't implemented in the draft yet, do test later (exiquio)
 
 		METADATA_CONTENT = [ # FIXME add test (exiquio)
 			:title, :base, :link, :meta, :style, :script, :noscript, :command
@@ -42,6 +41,10 @@ module BodyBuilder5
 			:div
 		]
 
+		SECTIONING_ROOT = [
+			:body, :blockquote, :figure, :td
+		]
+
 		SECTIONING_CONTENT = [
 			:section, :nav, :article, :aside
 		]
@@ -51,10 +54,18 @@ module BodyBuilder5
 		]
 
 		PHRASING_CONTENT = [ # FIXME add test (exiquio)
-			:script, :noscript, :br, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress,
-			:meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins, :del, :img,
-			:iframe, :object, :video, :audio, :canvas, :area, :label, :input, :button, :select, :datalist,
-			:textarea, :output, :command, :bb
+			:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time,
+			:progress, :meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins,
+			:del, :img, :iframe, :embed, :object, :video, :audio, :canvas, :area, :label, :input,
+			:button, :select, :datalist, :textarea, :output, :command, :bb
+		]
+
+		EMBEDDED_CONTENT = [ # FIXME add test (exiquio)
+			:img, :iframe, :embed, :object, :video, :audio, :canvas
+		]
+
+		INTERACTIVE_CONTENT = [ # FIXME add test (exiquio)
+			:a, :img, :video, :audio, :label, :input, :button, :select, :textarea, :details, :bb, :menu
 		]
 
 		ROOT_ELEMENT = [
