@@ -25,7 +25,33 @@ module BodyBuilder5
 	# as methods following the pattern #tag_name(opt_arg1, opt_arg1) for <tag_name>,
 	# tag_name_ for </tag_name> and #_tag_name_ for <tag_name></tag_name>.
 	class HeMan5
+		# HTML5 constants
 		GLOBAL_ATTRIBUTES = [] # FIXME this isn't implemented in the draft yet (exiquio)
+
+		METADATA_CONTENT = [ # FIXME add test (exiquio)
+			:title, :base, :link, :meta, :style, :script, :noscript, :command
+		]
+
+		FLOW_CONTENT = [ # FIXME add test (exiquio)
+			:style, :script, :noscript, :section, :nav, :article, :aside, :h1, :h2, :h3, :h4, :h5, :h6,
+			:header, :footer, :address, :p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :dl, :a,
+			:q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress, :meter, :code, :var,
+			:samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins, :del, :figure, :img, :iframe,
+			:embed, :object, :video, :audio, :canvas, :map, :area, :table, :form, :fieldset, :label,
+			:input, :button, :select, :datalist, :textarea, :output, :details, :command, :bb, :menu,
+			:div
+		]
+
+		HEADING_CONTENT = [ # FIXME add test (exiquio)
+			:h1, :h2, :h3, :h4, :h5, :h6, :header
+		]
+
+		PHRASING_CONTENT = [ # FIXME add test (exiquio)
+			:script, :noscript, :br, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress,
+			:meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins, :del, :img,
+			:iframe, :object, :video, :audio, :canvas, :area, :label, :input, :button, :select, :datalist,
+			:textarea, :output, :command, :bb
+		]
 
 		ROOT_ELEMENT = [
 			{
@@ -46,7 +72,7 @@ module BodyBuilder5
 				tag: :head,
 				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
-				valid_children: [:title, :base, :link, :meta, :script],
+				valid_children: [METADATA_CONTENT].flatten!,
 				required_children: [:title],
 				text_allowed: false,
 				text_required: false,
@@ -60,7 +86,7 @@ module BodyBuilder5
 				valid_children: [],
 				required_children: [],
 				text_allowed: true,
-				text_required: false,
+				text_required: true,
 				is_required: true,
 				is_singleton: true
 			},
@@ -84,7 +110,7 @@ module BodyBuilder5
 				text_allowed: false,
 				text_required: false,
 				is_required: false,
-				is_singleton: true
+				is_singleton: false
 			},
 			{
 				tag: :meta,
@@ -99,7 +125,7 @@ module BodyBuilder5
 			},
 			{
 				tag: :style,
-				valid_attributes: ['media', 'type', 'scoped', 'title'], # TODO docs say something about special semantics with 'title' (exiquio)
+				valid_attributes: ['media', 'type', 'scoped', 'title', GLOBAL_ATTRIBUTES].flatten!, # TODO docs say something about special semantics with 'title' (exiquio)
 				required_attributes: ['type'],
 				valid_children: [],
 				required_children: [],
@@ -110,9 +136,199 @@ module BodyBuilder5
 			}
 		]
 
+		SCRIPTING = [
+			{
+				tag: :script,
+				valid_attributes: ['src', 'async', 'defer', 'type', 'charset', GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: ['type'],
+				valid_children: [],
+				required_children: [],
+				text_allowed: true,
+				text_required: false,
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				# TODO triple check this (exiquio)
+				tag: :noscript,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [:link, :style, :meta],
+				required_children: [],
+				text_allowed: true,
+				text_required: false,
+				is_required: false,
+				is_singleton: false
+			}
+		]
+
+		SECTIONS = [
+			{
+				tag: :body,
+				valid_attributes: [
+					'onbeforeunload', 'onerror', 'onhashchange', 'onload', 'onmessage',
+					'onoffline', 'ononline', 'onpopstate', 'onresize', 'onstorage',
+					'onunload', GLOBAL_ATTRIBUTES
+				].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: false,
+				is_required: true,
+				is_singleton: true
+			},
+			{
+				tag: :section,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: false,
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :nav,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: false,
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :article,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: false,
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :aside,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: false,
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :h1,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [PHRASING_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: true, # TODO is this correct? (exiquio)
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :h2,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [PHRASING_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: true, # TODO is this correct? (exiquio)
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :h3,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [PHRASING_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: true, # TODO is this correct? (exiquio)
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :h4,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [PHRASING_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: true, # TODO is this correct? (exiquio)
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :h5,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [PHRASING_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: true, # TODO is this correct? (exiquio)
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				tag: :h6,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [PHRASING_CONTENT].flatten!,
+				required_children: [],
+				text_allowed: true,
+				text_required: true, # TODO is this correct? (exiquio)
+				is_required: false,
+				is_singleton: false
+			},
+			{
+				# FIXME we require a new key called 'reject' or something (exiquio)
+				tag: :header,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT, HEADING_CONTENT].flatten!,
+				required_children: [], # FIXME interesting case, requires at least one heading content descendant. how should this be handled (exiquio)
+				text_allowed: true, # FIXME is this correct (exiquio)
+				text_required: false,
+				is_required: false,
+				is_singleton: true # FIXME is this correct
+			},
+			{
+				tag: :footer,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT].flatten!,
+				required_children: [], # FIXME interesting case, requires at least one heading content descendant. how should this be handled (exiquio)
+				text_allowed: true, # FIXME is this correct (exiquio)
+				text_required: false,
+				is_required: false,
+				is_singleton: true # FIXME is this correct
+			},
+			{
+				tag: :address,
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
+				required_attributes: [],
+				valid_children: [FLOW_CONTENT].flatten!,
+				required_children: [], # FIXME interesting case, requires at least one heading content descendant. how should this be handled (exiquio)
+				text_allowed: true, # FIXME is this correct (exiquio)
+				text_required: false,
+				is_required: false,
+				is_singleton: true # FIXME is this correct
+			}
+		]
+
 		VALID_TAGS = [
 			ROOT_ELEMENT,
-			DOCUMENT_METADATA
+			DOCUMENT_METADATA,
+			SCRIPTING,
+			SECTIONS
 		].flatten!
 
 		def initialize
@@ -127,3 +343,6 @@ module BodyBuilder5
 		end
 	end
 end
+
+# TODO important, walk the HTML documention and ensure tag metadata is correct (exiquio)
+# TODO add a reject this field to tags for cases like header (exiquio)

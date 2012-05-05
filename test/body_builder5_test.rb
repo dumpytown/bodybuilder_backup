@@ -20,8 +20,15 @@ require 'riot'
 require_relative '../lib/body_builder5.rb'
 
 HTML5_TAGS = [
-	:html, # Root Element
-	:head, :title, :base, :link, :meta, :style # Document Metadata
+	# Root Element
+	:html,
+	# Document Metadata
+	:head, :title, :base, :link, :meta, :style,
+	# Scripting
+	:script, :noscript,
+	# Sections
+	:body, :section, :nav, :article, :aside, :h1, :h2, :h3, :h4, :h5, :h6,
+	:header, :footer, :address
 ]
 TAG_PROPERTIES = [
 	{property: :tag, type: [Symbol]},
@@ -57,7 +64,7 @@ context 'HeMan5' do
 
 	# constants
 	asserts('VALID_TAGS is an array with a length > 0') {topic::VALID_TAGS.is_a?(Array) &&  topic::VALID_TAGS.length > 0}
-	asserts('VALID_TAGS Hashes contain all TAG_PROPERTIES as keys and values of appropriate type') do
+	asserts('VALID_TAGS Hashes contain all TAG_PROPERTIES as keys with values of an appropriate type') do
 		value = true
 		topic::VALID_TAGS.each do |tag|
 			TAG_PROPERTIES.each do |property|
@@ -74,7 +81,7 @@ context 'HeMan5' do
 		end
 		value
 	end
-	asserts('VALID_TAGS all contain valid HTML5 tags as the value of the key :tag') do
+	asserts('VALID_TAGS contain all HTML5 as Symbols and these values are the value of the key :tag') do
 		value = true
 		topic::VALID_TAGS.each do |tag|
 			value = (
