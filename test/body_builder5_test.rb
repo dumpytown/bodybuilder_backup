@@ -36,6 +36,7 @@ TAG_PROPERTIES = [
 	{property: :required_attributes, type: [Array]},
 	{property: :valid_children, type: [Array]},
 	{property: :required_children, type: [Array]},
+	{property: :prohibited_explicitly, type: [Array]},
 	{property: :text_allowed, type: [TrueClass, FalseClass]},
 	{property: :text_required, type: [TrueClass, FalseClass]},
 	{property: :is_required, type: [TrueClass, FalseClass]},

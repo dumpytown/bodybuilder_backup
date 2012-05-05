@@ -42,6 +42,10 @@ module BodyBuilder5
 			:div
 		]
 
+		SECTIONING_CONTENT = [
+			:section, :nav, :article, :aside
+		]
+
 		HEADING_CONTENT = [ # FIXME add test (exiquio)
 			:h1, :h2, :h3, :h4, :h5, :h6, :header
 		]
@@ -60,6 +64,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [:head, :body],
 				required_children: [:head, :body],
+				prohibited_explicitly: [],
 				text_allowed: false,
 				text_required: false,
 				is_required: true,
@@ -74,6 +79,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [METADATA_CONTENT].flatten!,
 				required_children: [:title],
+				prohibited_explicitly: [],
 				text_allowed: false,
 				text_required: false,
 				is_required: true,
@@ -85,6 +91,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [],
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: true,
 				is_required: true,
@@ -96,6 +103,7 @@ module BodyBuilder5
 				required_attributes: ['href'],
 				valid_children: [],
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: false,
 				text_required: false,
 				is_required: false,
@@ -107,6 +115,7 @@ module BodyBuilder5
 				required_attributes: ['href', 'rel', 'type'],
 				valid_children: [],
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: false,
 				text_required: false,
 				is_required: false,
@@ -118,6 +127,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [],
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: false,
 				text_required: false,
 				is_required: false,
@@ -129,8 +139,9 @@ module BodyBuilder5
 				required_attributes: ['type'],
 				valid_children: [],
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true,
+				text_required: true, # FIXME is this correct? (exiquio)
 				is_required: false,
 				is_singleton: false
 			}
@@ -143,6 +154,7 @@ module BodyBuilder5
 				required_attributes: ['type'],
 				valid_children: [],
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: false,
 				is_required: false,
@@ -155,6 +167,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [:link, :style, :meta],
 				required_children: [],
+				prohibited_explicitly: [:noscript],
 				text_allowed: true,
 				text_required: false,
 				is_required: false,
@@ -173,6 +186,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: false,
 				is_required: true,
@@ -184,6 +198,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: false,
 				is_required: false,
@@ -195,6 +210,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: false,
 				is_required: false,
@@ -206,6 +222,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: false,
 				is_required: false,
@@ -217,6 +234,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: false,
 				is_required: false,
@@ -228,6 +246,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [PHRASING_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: true, # TODO is this correct? (exiquio)
 				is_required: false,
@@ -239,6 +258,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [PHRASING_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: true, # TODO is this correct? (exiquio)
 				is_required: false,
@@ -250,6 +270,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [PHRASING_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: true, # TODO is this correct? (exiquio)
 				is_required: false,
@@ -261,6 +282,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [PHRASING_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: true, # TODO is this correct? (exiquio)
 				is_required: false,
@@ -272,6 +294,7 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [PHRASING_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: true, # TODO is this correct? (exiquio)
 				is_required: false,
@@ -283,18 +306,19 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [PHRASING_CONTENT].flatten!,
 				required_children: [],
+				prohibited_explicitly: [],
 				text_allowed: true,
 				text_required: true, # TODO is this correct? (exiquio)
 				is_required: false,
 				is_singleton: false
 			},
 			{
-				# FIXME we require a new key called 'reject' or something (exiquio)
 				tag: :header,
 				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT, HEADING_CONTENT].flatten!,
 				required_children: [], # FIXME interesting case, requires at least one heading content descendant. how should this be handled (exiquio)
+				prohibited_explicitly: [SECTIONING_CONTENT, :header, :footer].flatten!,
 				text_allowed: true, # FIXME is this correct (exiquio)
 				text_required: false,
 				is_required: false,
@@ -305,7 +329,8 @@ module BodyBuilder5
 				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten!,
-				required_children: [], # FIXME interesting case, requires at least one heading content descendant. how should this be handled (exiquio)
+				required_children: [],
+				prohibited_explicitly: [HEADING_CONTENT, SECTIONING_CONTENT, :footer].flatten!,
 				text_allowed: true, # FIXME is this correct (exiquio)
 				text_required: false,
 				is_required: false,
@@ -316,7 +341,8 @@ module BodyBuilder5
 				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten!,
-				required_children: [], # FIXME interesting case, requires at least one heading content descendant. how should this be handled (exiquio)
+				required_children: [],
+				prohibited_explicitly: [HEADING_CONTENT, SECTIONING_CONTENT, :footer, :address].flatten!,
 				text_allowed: true, # FIXME is this correct (exiquio)
 				text_required: false,
 				is_required: false,
