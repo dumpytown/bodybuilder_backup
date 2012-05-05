@@ -30,7 +30,7 @@ module BodyBuilder5
 		ROOT_ELEMENT = [
 			{
 				tag: :html,
-				valid_attributes: ['manifest'].push(GLOBAL_ATTRIBUTES),
+				valid_attributes: ['manifest', GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
 				valid_children: [:head, :body],
 				required_children: [:head, :body],
@@ -44,9 +44,9 @@ module BodyBuilder5
 		DOCUMENT_METADATA = [
 			{
 				tag: :head,
-				valid_attributes: [].push(GLOBAL_ATTRIBUTES),
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
-				valid_chidren: [:title, :base, :link, :meta, :script],
+				valid_children: [:title, :base, :link, :meta, :script],
 				required_children: [:title],
 				text_allowed: false,
 				text_required: false,
@@ -55,10 +55,10 @@ module BodyBuilder5
 			},
 			{
 				tag: :title,
-				valid_attributes: [].push(GLOBAL_ATTRIBUTES),
+				valid_attributes: [GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
 				valid_children: [],
-				required_chidren: [],
+				required_children: [],
 				text_allowed: true,
 				text_required: false,
 				is_required: true,
@@ -66,7 +66,7 @@ module BodyBuilder5
 			},
 			{
 				tag: :base,
-				valid_attributes: ['href', 'target'].push(GLOBAL_ATTRIBUTES),
+				valid_attributes: ['href', 'target', GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: ['href'],
 				valid_children: [],
 				required_children: [],
@@ -77,10 +77,10 @@ module BodyBuilder5
 			},
 			{
 				tag: :link,
-				valid_attributes: ['href', 'rel', 'media', 'hreflang', 'type', 'sizes'].push(GLOBAL_ATTRIBUTES),
+				valid_attributes: ['href', 'rel', 'media', 'hreflang', 'type', 'sizes', GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: ['href', 'rel', 'type'],
 				valid_children: [],
-				required_chidren: [],
+				required_children: [],
 				text_allowed: false,
 				text_required: false,
 				is_required: false,
@@ -88,7 +88,7 @@ module BodyBuilder5
 			},
 			{
 				tag: :meta,
-				valid_attributes: ['name', 'http-equiv', 'content', 'charset'].push(GLOBAL_ATTRIBUTES),
+				valid_attributes: ['name', 'http-equiv', 'content', 'charset', GLOBAL_ATTRIBUTES].flatten!,
 				required_attributes: [],
 				valid_children: [],
 				required_children: [],
@@ -101,7 +101,7 @@ module BodyBuilder5
 				tag: :style,
 				valid_attributes: ['media', 'type', 'scoped', 'title'], # TODO docs say something about special semantics with 'title' (exiquio)
 				required_attributes: ['type'],
-				valid_chidren: [],
+				valid_children: [],
 				required_children: [],
 				text_allowed: true,
 				text_required: true,
