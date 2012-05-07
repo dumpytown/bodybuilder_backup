@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-# body_builder5_test.rb
+# skeletor5_test.rb
 #
-#	riot tests for BodyBuilder5
+#	riot tests for BodyBuilder5::Skeletor5
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -17,12 +17,11 @@
 
 require 'riot'
 
-require_relative '../lib/body_builder5.rb'
+require_relative '../lib/skeletor5.rb'
 
-# TESTS
-context 'BodyBuilder5Exception' do
-	setup {BodyBuilder5::BodyBuilder5Exception.new}
+context 'Skeletor5' do
+	setup {BodyBuilder5::Skeletor5}
 
 	# initialization
-	asserts('is an Exception') {topic.is_a? Exception}
+	asserts('is a Skeletor5') {topic.new.is_a? BodyBuilder5::Skeletor5}
 end
