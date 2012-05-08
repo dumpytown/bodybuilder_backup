@@ -70,7 +70,9 @@ HTML5_ELEMENTS = [
 	:script, :noscript,
 	# Sections
 	:body, :section, :nav, :article, :aside, :h1, :h2, :h3, :h4, :h5, :h6,
-	:header, :footer, :address
+	:header, :footer, :address,
+	# Grouping Content
+	:p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :li, :li, :dt, :dd
 ]
 
 TAG_PROPERTIES = [
@@ -82,7 +84,8 @@ TAG_PROPERTIES = [
 	{name: :text_allowed, type: [TrueClass, FalseClass]},
 	{name: :text_required, type: [TrueClass, FalseClass]},
 	{name: :is_required, type: [TrueClass, FalseClass]},
-	{name: :is_singleton, type: [TrueClass, FalseClass]}
+	{name: :is_singleton, type: [TrueClass, FalseClass]},
+	{name: :omit_end_tag, type: [TrueClass, FalseClass]}
 ]
 
 context 'HeMan5' do
