@@ -16,8 +16,13 @@
 # Reference:
 #		http://dev.w3.org/html5/html-author/
 
+
+# TODO Document me. (exiquio)
 module BodyBuilder5
-	# Generic Exception class to be thrown by BodyBuilder5 classes
+	# Generic Exception class to be thrown by BodyBuilder5 classes.
 	class BodyBuilder5Exception < Exception
 	end
 end
+
+# REVIEW: Ensure comments are written to rdoc standard or perhaps an altern-
+#  ative. (exiquio)

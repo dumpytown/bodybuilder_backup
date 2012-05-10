@@ -4,4 +4,9 @@ BodyBuilder5
 A Ruby HTML5 Builder
 
 (C) Copyright 2012 Exiquio Cooper-Anderson and Stephen Meyers
-GPLv3
+
+License: GPLv3
+
+Styleguide: https://github.com/jackrabbit/ruby-style-guide
+
+FIXME

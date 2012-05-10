@@ -25,13 +25,14 @@ METADATA_CONTENT = [
 ]
 
 FLOW_CONTENT = [
-	:style, :script, :noscript, :section, :nav, :article, :aside, :h1, :h2, :h3, :h4, :h5, :h6,
-	:header, :footer, :address, :p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :dl, :a,
-	:q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress, :meter, :code, :var,
-	:samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins, :del, :figure, :img, :iframe,
-	:embed, :object, :video, :audio, :canvas, :map, :area, :table, :form, :fieldset, :label,
-	:input, :button, :select, :datalist, :textarea, :output, :details, :command, :bb, :menu,
-	:div
+	:style, :script, :noscript, :section, :nav, :article, :aside, :h1, :h2, :h3,
+	:h4, :h5, :h6, :header, :footer, :address, :p, :hr, :br, :pre, :dialog,
+	:blockquote, :ol, :ul, :dl, :a, :q, :cite, :em, :strong, :small, :mark, :dfn,
+	:abbr, :time, :progress, :meter, :code, :var, :samp, :kbd, :sub, :sup, :span,
+	:i, :b, :bdo, :ruby, :ins, :del, :figure, :img, :iframe, :embed, :object,
+	:video, :audio, :canvas, :map, :area, :table, :form, :fieldset, :label, 
+	:input, :button, :select, :datalist, :textarea, :output, :details, :command,
+	:bb, :menu, :div
 ]
 
 SECTIONING_ROOT = [
@@ -47,10 +48,11 @@ HEADING_CONTENT = [
 ]
 
 PHRASING_CONTENT = [
-	:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time,
-	:progress, :meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins,
-	:del, :img, :iframe, :embed, :object, :video, :audio, :canvas, :area, :label, :input,
-	:button, :select, :datalist, :textarea, :output, :command, :bb
+	:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn, 
+	:abbr, :time, :progress, :meter, :code, :var, :samp, :kbd, :sub, :sup, :span,
+	:i, :b, :bdo, :ruby, :ins, :del, :img, :iframe, :embed, :object, :video,
+	:audio, :canvas, :area, :label, :input, :button, :select, :datalist,
+	:textarea, :output, :command, :bb
 ]
 
 EMBEDDED_CONTENT = [
@@ -58,7 +60,8 @@ EMBEDDED_CONTENT = [
 ]
 
 INTERACTIVE_CONTENT = [
-	:a, :img, :video, :audio, :label, :input, :button, :select, :textarea, :details, :bb, :menu
+	:a, :img, :video, :audio, :label, :input, :button, :select, :textarea,
+	:details, :bb, :menu
 ]
 
 HTML5_ELEMENTS = [
@@ -89,10 +92,9 @@ TAG_PROPERTIES = [
 ]
 
 context 'HeMan5' do
-	setup {BodyBuilder5::HeMan5}
+	setup { BodyBuilder5::HeMan5 }
 
-	# test constants
-	# TODO refactor similar tests (exiquio)
+	# Test constants
 	asserts('METADATA_CONTENT is valid') do
 		value = true
 		METADATA_CONTENT.each do |tag|
@@ -205,11 +207,11 @@ context 'HeMan5' do
 		value
 	end
 
-	# test initialization
+	# Test initialization
 	asserts('is a HeMan5') {topic.new.is_a? BodyBuilder5::HeMan5}
 
-	# test instance variables
-	asserts('elements is an hash with the correct length') do 
+	# Test instance variables
+	asserts('@elements is an hash with the correct length') do 
 		elements = topic.new.elements
 		elements.is_a?(Hash) && elements.length == HTML5_ELEMENTS.length
 	end
@@ -218,14 +220,14 @@ context 'HeMan5' do
 		value = true
 		elements = topic.new.elements
 		HTML5_ELEMENTS.each do |element|
-			value = (elements.has_key?(element) && value || false)
+			value = elements.has_key?(element) && value || false
 			puts "#{element} missing" unless value
 			break unless value
 		end
 		value
 	end
 
-	asserts('each element contains all TAG_PROPERTIES with values of an appropriate type') do
+	asserts('Each element contains all TAG_PROPERTIES with appropriate values') do
 		value = true
 		elements = topic.new.elements
 		elements.each do |tag_name, properties|
@@ -237,7 +239,10 @@ context 'HeMan5' do
 					value ||
 					false
 				)
-				puts "#{tag_name}: missing #{property_name} OR its value is not in #{property_type}" unless value
+				puts(
+					"#{tag_name}: missing #{property_name} OR its value is not in " \
+					"#{property_type}"
+				) unless value
 				break unless value
 			end
 			break unless value

@@ -1,6 +1,6 @@
 # skeletor5.rb
 #
-# TODO
+# FIXME: Provide a description here. (exiquio) 
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -20,11 +20,9 @@ require_relative 'body_builder5'
 require_relative 'heman5'
 
 module BodyBuilder5
-	# FIXME document (exiquio)
+	# FIXME: Document this class. (exiquio)
 	class Skeletor5
-		# FIXME document options thoroughly (exiquio)
-		# FIXME add test for options (exiqiuo)
-		def initialize #options
+		def initialize
 		end
 	end
 end

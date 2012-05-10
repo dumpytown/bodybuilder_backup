@@ -1,6 +1,6 @@
 # heman5.rb
 #
-# TODO
+# FIXME: Provide description here. (exiquio) 
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -19,25 +19,30 @@
 require_relative 'body_builder5'
 
 module BodyBuilder5
-	# HeMan performs the "heavy lifting" by providing access to all of the HTML5 tags
-	# as methods following the pattern #tag_name(opt_arg1, opt_arg1) for <tag_name>,
-	# tag_name_ for </tag_name> and #_tag_name_ for <tag_name></tag_name>.
+	# REVIEW: Ensure comment conformes to rdoc or something. (exiquio)
+	# FIXME: Rewrite comment to be more readable. (exiquio)
+	# HeMan performs the "heavy lifting" by providing access to all of the HTML5
+	#	tags as methods following the pattern #tag_name(opt_arg1, opt_arg1) for
+	# <tag_name>, tag_name_ for </tag_name> and #_tag_name_ for 
+	# <tag_name></tag_name>.
 	class HeMan5
-		GLOBAL_ATTRIBUTES = [] # FIXME this isn't implemented in the draft yet, do test later (exiquio)
+		# TODO: Global attributes are not yet implement in the standard. (exiquio)
+		GLOBAL_ATTRIBUTES = [] 
 
-		# CATAGORIES
-		METADATA_CONTENT = [ # FIXME add test (exiquio)
+		# HTML5 CATAGORIES
+		METADATA_CONTENT = [
 			:title, :base, :link, :meta, :style, :script, :noscript, :command
 		]
 
-		FLOW_CONTENT = [ # FIXME add test (exiquio)
-			:style, :script, :noscript, :section, :nav, :article, :aside, :h1, :h2, :h3, :h4, :h5, :h6,
-			:header, :footer, :address, :p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :dl, :a,
-			:q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress, :meter, :code, :var,
-			:samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins, :del, :figure, :img, :iframe,
-			:embed, :object, :video, :audio, :canvas, :map, :area, :table, :form, :fieldset, :label,
-			:input, :button, :select, :datalist, :textarea, :output, :details, :command, :bb, :menu,
-			:div
+		FLOW_CONTENT = [
+			:style, :script, :noscript, :section, :nav, :article, :aside, :h1, :h2,
+			:h3, :h4, :h5, :h6, :header, :footer, :address, :p, :hr, :br, :pre,
+			:dialog, :blockquote, :ol, :ul, :dl, :a, :q, :cite, :em, :strong, :small,
+			:mark, :dfn, :abbr, :time, :progress, :meter, :code, :var, :samp, :kbd,
+			:sub, :sup, :span, :i, :b, :bdo, :ruby, :ins, :del, :figure, :img,
+			:iframe, :embed, :object, :video, :audio, :canvas, :map, :area, :table,
+			:form, :fieldset, :label, :input, :button, :select, :datalist, :textarea,
+			:output, :details, :command, :bb, :menu, :div
 		]
 
 		SECTIONING_ROOT = [
@@ -48,23 +53,25 @@ module BodyBuilder5
 			:section, :nav, :article, :aside
 		]
 
-		HEADING_CONTENT = [ # FIXME add test (exiquio)
+		HEADING_CONTENT = [
 			:h1, :h2, :h3, :h4, :h5, :h6, :header
 		]
 
-		PHRASING_CONTENT = [ # FIXME add test (exiquio)
-			:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time,
-			:progress, :meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby, :ins,
-			:del, :img, :iframe, :embed, :object, :video, :audio, :canvas, :area, :label, :input,
-			:button, :select, :datalist, :textarea, :output, :command, :bb
+		PHRASING_CONTENT = [
+			:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn,
+			:abbr, :time, :progress, :meter, :code, :var, :samp, :kbd, :sub, :sup,
+			:span, :i, :b, :bdo, :ruby, :ins, :del, :img, :iframe, :embed, :object,
+			:video, :audio, :canvas, :area, :label, :input, :button, :select,
+			:datalist, :textarea, :output, :command, :bb
 		]
 
-		EMBEDDED_CONTENT = [ # FIXME add test (exiquio)
+		EMBEDDED_CONTENT = [
 			:img, :iframe, :embed, :object, :video, :audio, :canvas
 		]
 
-		INTERACTIVE_CONTENT = [ # FIXME add test (exiquio)
-			:a, :img, :video, :audio, :label, :input, :button, :select, :textarea, :details, :bb, :menu
+		INTERACTIVE_CONTENT = [
+			:a, :img, :video, :audio, :label, :input, :button, :select, :textarea,
+			:details, :bb, :menu
 		]
 
 		# TAG METADATA
@@ -121,7 +128,9 @@ module BodyBuilder5
 				omit_end_tag: true
 			},
 			link: {
-				valid_attributes: ['href', 'rel', 'media', 'hreflang', 'type', 'sizes', GLOBAL_ATTRIBUTES].flatten,
+				valid_attributes: [
+					'href', 'rel', 'media', 'hreflang', 'type', 'sizes', GLOBAL_ATTRIBUTES
+				].flatten,
 				required_attributes: ['href', 'rel', 'type'],
 				valid_children: [],
 				required_children: [],
@@ -133,7 +142,9 @@ module BodyBuilder5
 				omit_end_tag: true
 			},
 			meta: {
-				valid_attributes: ['name', 'http-equiv', 'content', 'charset', GLOBAL_ATTRIBUTES].flatten,
+				valid_attributes: [
+					'name', 'http-equiv', 'content', 'charset', GLOBAL_ATTRIBUTES
+				].flatten,
 				required_attributes: [],
 				valid_children: [],
 				required_children: [],
@@ -145,13 +156,16 @@ module BodyBuilder5
 				omit_end_tag: true
 			},
 			style: {
-				valid_attributes: ['media', 'type', 'scoped', 'title', GLOBAL_ATTRIBUTES].flatten, # TODO docs say something about special semantics with 'title' (exiquio)
+				# REVIEW: The draft mentions special semantics with 'title'. (exiquio)
+				valid_attributes: [
+					'media', 'type', 'scoped', 'title', GLOBAL_ATTRIBUTES
+				].flatten,
 				required_attributes: ['type'],
 				valid_children: [],
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true, # FIXME is this correct? (exiquio)
+				text_required: true, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -160,7 +174,9 @@ module BodyBuilder5
 
 		SCRIPTING = {
 			script: {
-				valid_attributes: ['src', 'async', 'defer', 'type', 'charset', GLOBAL_ATTRIBUTES].flatten,
+				valid_attributes: [
+					'src', 'async', 'defer', 'type', 'charset', GLOBAL_ATTRIBUTES
+				].flatten,
 				required_attributes: ['type'],
 				valid_children: [],
 				required_children: [],
@@ -171,7 +187,7 @@ module BodyBuilder5
 				is_singleton: false,
 				omit_end_tag: false
 			},
-			# TODO triple check this (exiquio)
+			# REVIEW: Triple check this. (exiquio)
 			noscript: {
 				valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
 				required_attributes: [],
@@ -258,7 +274,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true, # TODO is this correct? (exiquio)
+				text_required: true, # REVIEW (exiquio) 
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -270,7 +286,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true, # TODO is this correct? (exiquio)
+				text_required: true, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -282,7 +298,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true, # TODO is this correct? (exiquio)
+				text_required: true, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -294,7 +310,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true, # TODO is this correct? (exiquio)
+				text_required: true, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -306,7 +322,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true, # TODO is this correct? (exiquio)
+				text_required: true, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -318,7 +334,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: true, # TODO is this correct? (exiquio)
+				text_required: true, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -327,12 +343,13 @@ module BodyBuilder5
 				valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT, HEADING_CONTENT].flatten,
-				required_children: [], # FIXME interesting case, requires at least one heading content descendant. how should this be handled (exiquio)
+				# FIXME: This requires at least on heading content descendant. (exiquio)
+				required_children: [],
 				prohibited_explicitly: [SECTIONING_CONTENT, :header, :footer].flatten,
-				text_allowed: true, # FIXME is this correct (exiquio)
+				text_allowed: true, # REVIEW (exiquio)
 				text_required: false,
 				is_required: false,
-				is_singleton: true, # FIXME is this correct
+				is_singleton: true, # REVIEW (exiquio)
 				omit_end_tag: false
 			},
 			footer: {
@@ -340,11 +357,13 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten,
 				required_children: [],
-				prohibited_explicitly: [HEADING_CONTENT, SECTIONING_CONTENT, :footer].flatten,
-				text_allowed: true, # FIXME is this correct (exiquio)
+				prohibited_explicitly: [
+					HEADING_CONTENT, SECTIONING_CONTENT, :footer
+				].flatten,
+				text_allowed: true, # REVIEW (exiquio)
 				text_required: false,
 				is_required: false,
-				is_singleton: true, # FIXME is this correct
+				is_singleton: true, # REVIEW (exiquio)
 				omit_end_tag: false
 			},
 			address: {
@@ -352,11 +371,13 @@ module BodyBuilder5
 				required_attributes: [],
 				valid_children: [FLOW_CONTENT].flatten,
 				required_children: [],
-				prohibited_explicitly: [HEADING_CONTENT, SECTIONING_CONTENT, :footer, :address].flatten,
-				text_allowed: true, # FIXME is this correct (exiquio)
+				prohibited_explicitly: [
+					HEADING_CONTENT, SECTIONING_CONTENT, :footer, :address
+				].flatten,
+				text_allowed: true, # REVIEW (exiquio)
 				text_required: false,
 				is_required: false,
-				is_singleton: true, # FIXME is this correct
+				is_singleton: true, # REVIEW (exiquio)
 				omit_end_tag: false
 			}
 		}
@@ -414,7 +435,9 @@ module BodyBuilder5
 				valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
 				required_attributes: [],
 				valid_children: [:dt, :dd],
-				required_children: [], # TODO "Zero or more pairs of one dt element followed by one dd element" - should we even try this? (exiquio)
+				# FIXME: This require zero or more pairs of one dt element followed by
+				#		one dd element. Hmm...? (exiquio)
+				required_children: [], 
 				prohibited_explicitly: [],
 				text_allowed: false,
 				text_required: false,
@@ -465,7 +488,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: false, # FIXME correct? (exiquio)
+				text_required: false, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -489,7 +512,7 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: false, # FIXME correct? (exiquio)
+				text_required: false, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
@@ -501,20 +524,24 @@ module BodyBuilder5
 				required_children: [],
 				prohibited_explicitly: [],
 				text_allowed: true,
-				text_required: false, # FIXME correct? (exiquio)
+				text_required: false, # REVIEW (exiquio)
 				is_required: false,
 				is_singleton: false,
 				omit_end_tag: false
 			}
 		}
 
+		# TODO: Complete. (exiquio)
+		# FIXME: Add tests. (exiquio)
 		TEXT_LEVEL_SEMANTICS = {
 			a: {
 				valid_attributes: [
-					'href', 'target', 'ping', 'rel', 'media', 'hreflang', 'type', GLOBAL_ATTRIBUTES
-				],
-				required_attributes: [], # NOTE evidently href is not required (exiquio)
-				valid_children: [], # FIXME transparent: we need a way to cope with this (exiquio)
+					'href', 'target', 'ping', 'rel', 'media', 'hreflang', 'type',
+					GLOBAL_ATTRIBUTES
+				].flatten,
+				required_attributes: [], # REVIEW (exiquio)
+				# The following is transparent. See Issues #6. (exiquio)
+				valid_children: [],
 				required_children: [],
 				prohibited_explicitly: [INTERACTIVE_CONTENT].flatten,
 				text_allowed: true,
@@ -525,7 +552,7 @@ module BodyBuilder5
 			}
 		}
 
-		# TODO document? (exiquio)
+		# FIXME: Document. (exiquio)
 		def initialize
 			@elements = {}
 			[
@@ -534,9 +561,12 @@ module BodyBuilder5
 				SCRIPTING,
 				SECTIONS,
 				GROUPING_CONTENT
-			].each {|hash| @elements.merge! hash}
+			].each { |hash| @elements.merge! hash }
 		end
 
 		attr_reader :elements
 	end
 end
+
+# REVIEW: Review everything that is one to one with the HTML5 drafta and ensure
+#	 proper aherence to the letter of the law. (exiquio)

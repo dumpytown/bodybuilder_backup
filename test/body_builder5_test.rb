@@ -19,10 +19,11 @@ require 'riot'
 
 require_relative '../lib/body_builder5.rb'
 
-# TESTS
 context 'BodyBuilder5Exception' do
 	setup {BodyBuilder5::BodyBuilder5Exception.new}
 
-	# initialization
 	asserts('is an Exception') {topic.is_a? Exception}
+	asserts('is an BodyBuilderException') do
+		topic.is_a? BodyBuilder5::BodyBuilder5Exception
+	end
 end
