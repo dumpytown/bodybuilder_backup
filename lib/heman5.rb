@@ -508,6 +508,23 @@ module BodyBuilder5
 			}
 		}
 
+		TEXT_LEVEL_SEMANTICS = {
+			a: {
+				valid_attributes: [
+					'href', 'target', 'ping', 'rel', 'media', 'hreflang', 'type', GLOBAL_ATTRIBUTES
+				],
+				required_attributes: [], # NOTE evidently href is not required (exiquio)
+				valid_children: [], # FIXME transparent: we need a way to cope with this (exiquio)
+				required_children: [],
+				prohibited_explicitly: [INTERACTIVE_CONTENT].flatten,
+				text_allowed: true,
+				text_required: false,
+				is_required: false,
+				is_singleton: false,
+				omit_end_tag: false
+			}
+		}
+
 		# TODO document? (exiquio)
 		def initialize
 			@elements = {}
