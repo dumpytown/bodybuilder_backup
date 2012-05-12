@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # body_builder5.rb
 #
 # An HTML5 builder for Ruby 1.9+
@@ -549,7 +551,7 @@ module BodyBuilder5
 		SCRIPTING,
 	  SECTIONS,
 	  GROUPING_CONTENT
-	].inject :merge
+	].inject(:merge)
 
 	# Generic Exception class to be thrown by BodyBuilder5 classes.
 	class BodyBuilder5Exception < Exception

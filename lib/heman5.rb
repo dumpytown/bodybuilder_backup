@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # heman5.rb
 #
 # FIXME: Provide description here. (exiquio) 

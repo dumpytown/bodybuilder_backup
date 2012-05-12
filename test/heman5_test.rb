@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# -*- encoding : utf-8 -*-
+
 # heman5_test.rb
 #
 #	riot tests for BodyBuilder5::HeMan5

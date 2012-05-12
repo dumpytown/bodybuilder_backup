@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# -*- encoding : utf-8 -*-
+
 # skeletor5_test.rb
 #
 #	riot tests for BodyBuilder5::Skeletor5

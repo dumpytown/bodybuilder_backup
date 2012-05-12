@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # skeletor5.rb
 #
 # FIXME: Provide a description here. (exiquio) 
