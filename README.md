@@ -7,6 +7,4 @@ A Ruby HTML5 Builder
 
 License: GPLv3
 
-Styleguide: https://github.com/jackrabbit/ruby-style-guide
-
 FIXME

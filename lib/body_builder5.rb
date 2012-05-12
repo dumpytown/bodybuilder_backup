@@ -574,7 +574,7 @@ end
 # do not have an end tag according to the HTML5 Draft and in such cases only
 # the open method (#tag) is implemented. Otherwise expect all three. 
 #
-# These #tag and #_tag_ methods take a optional Hash argument containing the
+# The #tag and #_tag_ methods take a optional Hash argument containing the
 # optional keys :attributes and :text which are both Strings in value.
 #
 # #Document is the prefered interface for creating HTML5 "documents" in
@@ -582,7 +582,7 @@ end
 #
 # Example:
 #
-#		document = BodyBuilder5::Document
+#		document = Document
 #
 #		document.html
 #			document.head
