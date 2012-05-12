@@ -582,7 +582,7 @@ end
 #
 # Example:
 #
-#		document = Document
+#		document = Document()
 #
 #		document.html
 #			document.head
