@@ -19,11 +19,11 @@
 
 require 'riot'
 
-require_relative '../lib/heman5.rb'
+require_relative '../lib/body_builder5.rb'
 
 context 'HeMan5' do
 	setup { BodyBuilder5::HeMan5 }
 
 	# Test initialization
-	asserts('is a HeMan5') {topic.new.is_a? BodyBuilder5::HeMan5}
+	asserts('is a HeMan5') { topic.new.is_a? BodyBuilder5::HeMan5 }
 end

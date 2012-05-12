@@ -94,7 +94,7 @@ TAG_PROPERTIES = [
 ]
 
 context 'BodyBuilder5' do
-	setup {BodyBuilder5}
+	setup { BodyBuilder5 }
 
 	# Test constants
 	asserts('METADATA_CONTENT is valid') do
@@ -250,12 +250,27 @@ context 'BodyBuilder5' do
 	end
 end
 
-context 'BodyBuilder5Exception' do
-	# TEST exce
-	setup {BodyBuilder5::BodyBuilder5Exception.new}
+
+# Test Exceptions
+context 'Builder5Exception' do
+	setup { BodyBuilder5::BodyBuilder5Exception.new }
 
 	asserts('is an Exception') {topic.is_a? Exception}
 	asserts('is an BodyBuilderException') do
 		topic.is_a? BodyBuilder5::BodyBuilder5Exception
+	end
+end
+
+# Test functions
+context 'Document function' do
+	setup { method(:Document).call }
+	asserts('returns a BodyBuilder5::HeMan5') { topic.is_a? BodyBuilder5::HeMan5 }
+end
+
+context 'Template function' do 
+	setup { method(:Template).call }
+	
+	asserts('returns a BodyBuilder5::Skeletor5') do
+		topic.is_a? BodyBuilder5::Skeletor5
 	end
 end

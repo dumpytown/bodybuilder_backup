@@ -18,8 +18,6 @@
 # Reference:
 #		http://dev.w3.org/html5/html-author/
 
-require_relative 'body_builder5'
-
 module BodyBuilder5
 	# REVIEW: Ensure comment conformes to rdoc or something. (exiquio)
 	# FIXME: Rewrite comment to be more readable. (exiquio)

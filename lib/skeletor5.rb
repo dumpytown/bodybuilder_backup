@@ -18,9 +18,6 @@
 # Reference:
 #   http://dev.w3.org/html5/html-author/
 
-require_relative 'body_builder5'
-require_relative 'heman5'
-
 module BodyBuilder5
 	# FIXME: Document this class. (exiquio)
 	class Skeletor5
