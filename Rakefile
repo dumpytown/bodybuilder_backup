@@ -5,7 +5,7 @@ end
 
 desc 'Runs behaviour tests.'
 task :tests do
-	sh './tests/body_builder5_test.rb'
+	sh './tests/bodybuilder5_test.rb'
 	sh './tests/heman5_test.rb'
 	sh './tests/skeletor5_test.rb'
 end

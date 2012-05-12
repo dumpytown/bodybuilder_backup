@@ -19,7 +19,7 @@
 
 require 'riot'
 
-require_relative '../lib/body_builder5.rb'
+require_relative '../lib/bodybuilder5.rb'
 
 context 'HeMan5' do
 	setup { BodyBuilder5::HeMan5 }
