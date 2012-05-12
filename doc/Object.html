@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/body_builder5.rb
+    <li>lib/bodybuilder5.rb
   </ul>
 </nav>
 
@@ -138,7 +138,10 @@
 
         <div class="method-description">
           
-          <p>Returns a <a href="BodyBuilder5/HeMan5.html">BodyBuilder5::HeMan5</a>
+          <p>Preferred constructor for creating a new <a
+href="BodyBuilder5/HeMan5.html">BodyBuilder5::HeMan5</a>.</p>
+
+<p>Returns a <a href="BodyBuilder5/HeMan5.html">BodyBuilder5::HeMan5</a>
 object which represents a HTML5 documents with each of the tags/elments
 implemented as methods tag, tag_, and #<em>tag</em> representing
 &lt;tag&gt;, &lt;/tag&gt; and &lt;tag&gt;&lt;/tag&gt; respectively. Some
@@ -148,11 +151,15 @@ only the open method (tag) is implemented. Otherwise expect all three.</p>
 <p>The tag and #<em>tag</em> methods take a optional Hash argument containing
 the optional keys :attributes and :text which are both Strings in value.</p>
 
-<p>#<a href="Object.html#method-i-Document">#Document</a> is the prefered
-interface for creating HTML5 "documents" in <a
-href="BodyBuilder5.html">BodyBuilder5</a>.</p>
+<h3 id="method-i-Document-label-Paramaters%3A">Paramaters:</h3>
 
-<p>Example:</p>
+<pre>None</pre>
+
+<h3 id="method-i-Document-label-Returns%3A">Returns:</h3>
+
+<pre>BodyBuilder::HeMan5</pre>
+
+<h3 id="method-i-Document-label-Example%3A">Example:</h3>
 
 <pre>document = Document()
 
@@ -170,7 +177,7 @@ document.html_</pre>
 
           
           <div class="method-source-code" id="Document-source">
-            <pre><span class="ruby-comment"># File lib/body_builder5.rb, line 597</span>
+            <pre><span class="ruby-comment"># File lib/bodybuilder5.rb, line 601</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Document</span>
         <span class="ruby-constant">BodyBuilder5</span><span class="ruby-operator">::</span><span class="ruby-constant">HeMan5</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -195,18 +202,23 @@ document.html_</pre>
 
         <div class="method-description">
           
-          <p>Returns a <a href="BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>
-object.</p>
+          <p>Prefered constructor for creating a new <a
+href="BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>.</p>
 
-<pre>#Template is the prefered interfact for creating HTML5 &quot;templates in
-BodyBuilder5.
+<h3 id="method-i-Template-label-Parameters%3A">Parameters:</h3>
+
+<pre>TODO</pre>
+
+<h3 id="method-i-Template-label-Returns%3A">Returns:</h3>
+
+<pre>BodyBuilder5::Skeletor5
 
 TODO: Complete documentation. (exiquio)</pre>
           
 
           
           <div class="method-source-code" id="Template-source">
-            <pre><span class="ruby-comment"># File lib/body_builder5.rb, line 608</span>
+            <pre><span class="ruby-comment"># File lib/bodybuilder5.rb, line 615</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Template</span>
         <span class="ruby-constant">BodyBuilder5</span><span class="ruby-operator">::</span><span class="ruby-constant">Skeletor5</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
