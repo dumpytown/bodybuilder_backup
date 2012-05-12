@@ -209,7 +209,6 @@ context 'BodyBuilder5' do
 		value
 	end
 
-	# Test instance variables
 	asserts('VALID_ELEMENTS is an hash with the correct length') do 
 		elements = topic::VALID_ELEMENTS
 		elements.is_a?(Hash) && elements.length == HTML5_ELEMENTS.length
@@ -251,7 +250,7 @@ context 'BodyBuilder5' do
 end
 
 
-# Test Exceptions
+# Test exceptions
 context 'Builder5Exception' do
 	setup { BodyBuilder5::BodyBuilder5Exception.new }
 

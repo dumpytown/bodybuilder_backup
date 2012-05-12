@@ -24,6 +24,6 @@ require_relative '../lib/skeletor5.rb'
 context 'Skeletor5' do
 	setup {BodyBuilder5::Skeletor5}
 
-	# Test nitialization
+	# Test initialization
 	asserts('is a Skeletor5') {topic.new.is_a? BodyBuilder5::Skeletor5}
 end

@@ -1,3 +1,3 @@
 source :rubygems
 
-gem 'riot'
+gem "riot", "~> 0.12.5"
