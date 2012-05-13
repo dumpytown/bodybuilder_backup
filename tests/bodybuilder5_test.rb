@@ -77,7 +77,11 @@ HTML5_ELEMENTS = [
 	:body, :section, :nav, :article, :aside, :h1, :h2, :h3, :h4, :h5, :h6,
 	:header, :footer, :address,
 	# Grouping Content
-	:p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :li, :li, :dt, :dd
+	:p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :li, :li, :dt, :dd,
+	# Text-Level Semantics
+	:a, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress,
+	:meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby,
+	:rt, :rp
 ]
 
 TAG_PROPERTIES = [
