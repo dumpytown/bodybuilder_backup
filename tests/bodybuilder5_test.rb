@@ -77,22 +77,32 @@ HTML5_ELEMENTS = [
 	:body, :section, :nav, :article, :aside, :h1, :h2, :h3, :h4, :h5, :h6,
 	:header, :footer, :address,
 	# Grouping Content
-	:p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :li, :li, :dt, :dd,
+	:p, :hr, :br, :pre, :dialog, :blockquote, :ol, :ul, :li, :dl, :dt, :dd,
 	# Text-Level Semantics
 	:a, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress,
 	:meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby,
 	:rt, :rp,
 	# Edits
 	:ins, :del,
+	# Embedded Content
+	:figure, :img, :iframe, :embed, :object, :param, :video, :audio, :source,
+	:canvas, :map, :area,
+	# Tabular Content
+	:table, :caption, :colgroup, :col, :tbody, :thead, :tfoot, :tr, :td, :th,
+	# Forms
+	:form, :fieldset, :label, :input, :button, :select, :datalist, :optgroup,
+	:option, :textarea, :output,
+	# Interactive Content
+	:details, :command, :bb, :menu,
 	# Miscellaneous Elements
 	:legend, :div
 ]
 
 TAG_PROPERTIES = [
-	{name: :valid_attributes, type: [Array]},
+	{name: :attributes, type: [Array]},
 	{name: :required_attributes, type: [Array]},
-	{name: :valid_children, type: [Array]},
-	{name: :required_children, type: [Array]},
+	{name: :content_model, type: [Array]},
+	{name: :required_content, type: [Array]},
 	{name: :prohibited_explicitly, type: [Array]},
 	{name: :text_allowed, type: [TrueClass, FalseClass]},
 	{name: :text_required, type: [TrueClass, FalseClass]},
@@ -222,12 +232,23 @@ context 'BodyBuilder5' do
 		elements.is_a?(Hash) && elements.length == HTML5_ELEMENTS.length
 	end
 
-	asserts('VALID_ELEMENTS contain all HTML5 elements as Symbols keys') do
+	asserts('VALID_ELEMENTS contain all HTML5_ELEMENTS as Symbols keys') do
 		value = true
 		elements = topic::VALID_ELEMENTS
 		HTML5_ELEMENTS.each do |element|
 			value = elements.has_key?(element) && value || false
-			puts "#{element} missing" unless value
+			puts "#{element} missing VALID_ELEMENTS" unless value
+			break unless value
+		end
+		value
+	end
+
+	asserts('HTML5_ELEMENTS contain all VALID_ELEMENTS as Symbols keys') do
+		value = true
+		elements = topic::VALID_ELEMENTS
+		elements.each do |tag_name, properties|
+			value = HTML5_ELEMENTS.include?(tag_name) && value || false
+			puts "#{tag_name} missing in HTML5_ELEMENTS" unless value
 			break unless value
 		end
 		value

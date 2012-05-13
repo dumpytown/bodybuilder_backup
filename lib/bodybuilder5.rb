@@ -12,11 +12,12 @@
 #		Exiquio Cooper-Anderson (exiquio@gmail.com)
 #		Stephen Meyers (?@?.com)
 #
-# Requirements:
+# Requirement(s_:
 #		Ruby 1.9.*+
 #
-# Reference:
+# Reference(s):
 #		http://dev.w3.org/html5/html-author/
+#		http://www.quackit.com/html_5/
 
 require_relative 'globals'
 require_relative 'heman5'
@@ -108,10 +109,10 @@ module BodyBuilder5
 	# HTML Root Element.
 	ROOT_ELEMENT = {
 		html: {
-			valid_attributes: ['manifest', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['manifest', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [:head, :body],
-			required_children: [:head, :body],
+			content_model: [:head, :body],
+			required_content: [:head, :body],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -124,10 +125,10 @@ module BodyBuilder5
 	# HTML5 Document Metadata elements.
 	DOCUMENT_METADATA = {
 		head: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [METADATA_CONTENT].flatten,
-			required_children: [:title],
+			content_model: [METADATA_CONTENT].flatten,
+			required_content: [:title],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -136,10 +137,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		title: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true,
@@ -148,10 +149,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		base: {
-			valid_attributes: ['href', 'target', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['href', 'target', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: ['href'],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -160,12 +161,12 @@ module BodyBuilder5
 			omit_end_tag: true
 		},
 		link: {
-			valid_attributes: [
+			attributes: [
 				'href', 'rel', 'media', 'hreflang', 'type', 'sizes', GLOBAL_ATTRIBUTES
 			].flatten,
 			required_attributes: ['href', 'rel', 'type'],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -174,12 +175,12 @@ module BodyBuilder5
 			omit_end_tag: true
 		},
 		meta: {
-			valid_attributes: [
+			attributes: [
 				'name', 'http-equiv', 'content', 'charset', GLOBAL_ATTRIBUTES
 			].flatten,
 			required_attributes: [],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -189,12 +190,12 @@ module BodyBuilder5
 		},
 		style: {
 			# REVIEW: The draft mentions special semantics with 'title'. (exiquio)
-			valid_attributes: [
+			attributes: [
 				'media', 'type', 'scoped', 'title', GLOBAL_ATTRIBUTES
 			].flatten,
 			required_attributes: ['type'],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true, # REVIEW: (exiquio)
@@ -207,12 +208,12 @@ module BodyBuilder5
 	# HTML5 Scripting elements.
 	SCRIPTING = {
 		script: {
-			valid_attributes: [
+			attributes: [
 				'src', 'async', 'defer', 'type', 'charset', GLOBAL_ATTRIBUTES
 			].flatten,
 			required_attributes: ['type'],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -222,10 +223,10 @@ module BodyBuilder5
 		},
 		# REVIEW: Triple check this. (exiquio)
 		noscript: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [:link, :style, :meta],
-			required_children: [],
+			content_model: [:link, :style, :meta],
+			required_content: [],
 			prohibited_explicitly: [:noscript],
 			text_allowed: true,
 			text_required: false,
@@ -238,14 +239,14 @@ module BodyBuilder5
 	# HTML5 Sections elements
 	SECTIONS = {
 		body: {
-			valid_attributes: [
+			attributes: [
 				'onbeforeunload', 'onerror', 'onhashchange', 'onload', 'onmessage',
 				'onoffline', 'ononline', 'onpopstate', 'onresize', 'onstorage',
 				'onunload', GLOBAL_ATTRIBUTES
 			].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -254,10 +255,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		section: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -266,10 +267,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		nav: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -278,10 +279,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		article: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -290,10 +291,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		aside: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -302,10 +303,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		h1: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true, # REVIEW: (exiquio)
@@ -314,10 +315,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		h2: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true, # REVIEW: (exiquio)
@@ -326,10 +327,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		h3: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true, # REVIEW: (exiquio)
@@ -338,10 +339,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		h4: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true, # REVIEW: (exiquio)
@@ -350,10 +351,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		h5: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true, # REVIEW: (exiquio)
@@ -362,10 +363,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		h6: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true, # REVIEW: (exiquio)
@@ -374,11 +375,11 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		header: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT, HEADING_CONTENT].flatten,
+			content_model: [FLOW_CONTENT, HEADING_CONTENT].flatten,
 			# FIXME: This requires at least on heading content descendant. (exiquio)
-			required_children: [],
+			required_content: [],
 			prohibited_explicitly: [SECTIONING_CONTENT, :header, :footer].flatten,
 			text_allowed: true, # REVIEW: (exiquio)
 			text_required: false,
@@ -387,10 +388,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		footer: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [
 				HEADING_CONTENT, SECTIONING_CONTENT, :footer
 			].flatten,
@@ -401,10 +402,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		address: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [
 				HEADING_CONTENT, SECTIONING_CONTENT, :footer, :address
 			].flatten,
@@ -419,10 +420,10 @@ module BodyBuilder5
 	# HTML5 Grouping Content elements.
 	GROUPING_CONTENT = {
 		p: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true,
@@ -431,10 +432,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		hr: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -443,10 +444,10 @@ module BodyBuilder5
 			omit_end_tag: true
 		},
 		br: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -455,10 +456,10 @@ module BodyBuilder5
 			omit_end_tag: true
 		},
 		pre: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true,
@@ -467,12 +468,12 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		dialog: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [:dt, :dd],
+			content_model: [:dt, :dd],
 			# FIXME: This require zero or more pairs of one dt element followed by
 			#		one dd element. Hmm...? (exiquio)
-			required_children: [],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -481,10 +482,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		blockquote: {
-			valid_attributes: ['cite', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['cite', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: true,
@@ -493,10 +494,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		ol: {
-			valid_attributes: ['reversed', 'start', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['reversed', 'start', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [:li],
-			required_children: [],
+			content_model: [:li],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -505,10 +506,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		ul: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [:li],
-			required_children: [],
+			content_model: [:li],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -517,10 +518,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		li: {
-			valid_attributes: ['value', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['value', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false, # REVIEW: (exiquio)
@@ -529,10 +530,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		dl: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [:dt, :dd],
-			required_children: [],
+			content_model: [:dt, :dd],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -541,10 +542,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		dt: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false, # REVIEW: (exiquio)
@@ -553,10 +554,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		dd: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT],
-			required_children: [],
+			content_model: [FLOW_CONTENT],
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false, # REVIEW: (exiquio)
@@ -569,14 +570,14 @@ module BodyBuilder5
 	# HTML5 Text-Level Semantics elements.
 	TEXT_LEVEL_SEMANTICS = {
 		a: {
-			valid_attributes: [
+			attributes: [
 				'href', 'target', 'ping', 'rel', 'media', 'hreflang', 'type',
 				GLOBAL_ATTRIBUTES
 			].flatten,
 			required_attributes: [], # REVIEW: (exiquio)
 			# The following is transparent. See Issues #6. (exiquio)
-			valid_children: [],
-			required_children: [],
+			content_model: [],
+			required_content: [],
 			prohibited_explicitly: [INTERACTIVE_CONTENT].flatten,
 			text_allowed: true,
 			text_required: false,
@@ -585,10 +586,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		q: {
-			valid_attributes: ['cite', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['cite', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -597,10 +598,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		cite: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -609,10 +610,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		em: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -621,10 +622,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		strong: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -633,10 +634,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		small: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -645,10 +646,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		mark: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -657,10 +658,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		dfn: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [:dfn],
 			text_allowed: true,
 			text_required: false,
@@ -669,10 +670,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		abbr: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -681,10 +682,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		time: {
-			valid_attributes: ['datetime', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['datetime', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -693,10 +694,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		progress: {
-			valid_attributes: ['value', 'max', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['value', 'max', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -705,12 +706,12 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		meter: {
-			valid_attributes: [
+			attributes: [
 				'value', 'min', 'low', 'high', 'max' 'optimum', GLOBAL_ATTRIBUTES
 			].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -719,10 +720,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		code: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -731,10 +732,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		var: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -743,10 +744,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		samp: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -755,10 +756,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		kbd: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -767,10 +768,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		sub: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -779,10 +780,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		sup: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -791,10 +792,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		span: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -803,10 +804,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		i: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -815,10 +816,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		b: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -827,10 +828,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		bdo: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -839,12 +840,12 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		ruby: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
 			# REVIEW: "..followed either by a single rt element, or an rp element, an
 			# rt element, and another rp element." (exiquio)
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -853,10 +854,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		rt: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -865,10 +866,10 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		rp: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [:rp].flatten,
-			required_children: [],
+			content_model: [:rp].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -881,10 +882,10 @@ module BodyBuilder5
 	# HTML5 Edits elements.
 	EDITS = {
 		ins: {
-			valid_attributes: ['cite', 'datetime', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['cite', 'datetime', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [], # REVIEW: Transparent. (exiquio)
-			required_children: [], # REVIEW: Transparent. (exiquio)
+			content_model: [], # REVIEW: Transparent. (exiquio)
+			required_content: [], # REVIEW: Transparent. (exiquio)
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -893,10 +894,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		del: {
-			valid_attributes: ['cite', 'datetime', GLOBAL_ATTRIBUTES].flatten,
+			attributes: ['cite', 'datetime', GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [], # REVIEW: Transparent. (exiquio)
-			required_children: [], # REVIEW: Transparent. (exiquio)
+			content_model: [], # REVIEW: Transparent. (exiquio)
+			required_content: [], # REVIEW: Transparent. (exiquio)
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -906,13 +907,535 @@ module BodyBuilder5
 		}
 	}
 
+	# HTML5 Embedded Content
+	EMBEDDED_CONTENT = {
+		figure: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:legend, FLOW_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		img: {
+			attributes: [
+				'alt', 'src', 'usemap', 'ismap', 'width', 'height', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		},
+		iframe: {
+			attributes: [
+				'src', 'name', 'sandbox', 'seamless', 'width', 'height',
+				GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		embed: {
+			attributes: [
+				'src', 'type', 'width', 'height', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		},
+		object: {
+			attributes: [
+				'data', 'type', 'name', 'usemap', 'form', 'usemap', 'form', 'width',
+				'height', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [:params, :transparent].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		param: {
+			attributes: ['name', 'value', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		},
+		video: {
+			attributes: [
+				'src', 'poster', 'autobuffer', 'autoplay', 'loop', 'controls', 'width',
+				'height', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			# FIXME: If the element has a src attribute: transparent.
+			#		If the element does not have a src attribute: one or more
+			#		source elements, then, transparent. (exiquio)
+			content_model: [:source, :transparent].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		audio: {
+			attributes: [
+				'src', 'autobuffer', 'autoplay', 'loop', 'controls', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			# FIXME: If the element has a src attribute: transparent.
+			#		If the element does not have a src attribute: one or more source
+			#		elements, then, transparent.
+			content_model: [:source, :transparent].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		source: {
+			attributes: ['src', 'type', 'media', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		},
+		canvas: {
+			attributes: ['width', 'height', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:transparent],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		map: {
+			attributes: ['name', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		area: {
+			attributes: [
+				'alt', 'coords', 'shape', 'href', 'target', 'ping', 'rel', 'media',
+				'hreflang', 'type', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		}
+	}
+
+	# HTML5 Tabular Data
+	TABULAR_DATA = {
+		table: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			# FIXME: In this order: optionally a caption element, followed by either
+			#		zero or more colgroup elements, followed optionally by a thead
+			#		element, followed optionally by a tfoot element, followed by either
+			#		zero or more tbody elements or one or more tr elements, followed
+			#		optionally by a	tfoot element (but there can only be one tfoot
+			#		element child in total). (exiquio)
+			content_model: [:caption, :colgroup, :thead, :tfoot, :tbody, :tr],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		caption: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		colgroup: {
+			attributes: ['span', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:col],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		col: {
+			attributes: ['span', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		},
+		tbody: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:tr],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		thead: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:tr],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		tfoot: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:tr],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		tr: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:td, :th],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		td: {
+			attributes: ['colspan', 'rowspan', 'headers', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		th: {
+			attributes: [
+				'colspan', 'rowspan', 'headers', 'scope', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [PHRASING_CONTENT],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		}
+	}
+
+	# HTML5 Forms
+	FORMS = {
+		form: {
+			attributes: [
+				'accept-charset', 'action', 'autocomplete', 'enctype', 'method',
+				'name', 'novalidate', 'target', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [:form],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		fieldset: {
+			attributes: ['disabled', 'form', 'name', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:legend, FLOW_CONTENT].flatten,
+			required_content: [:legend],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		label: {
+			attributes: ['form', 'for', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			# FIXME: Phrasing content, but with no descendant labelable form
+			#		associated elements unless it is the element's labeled control, and
+			#		no descendant label elements. (exiquio)
+			content_model: [PHRASING_CONTENT],
+			required_content: [],
+			prohibited_explicitly: [:label],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		input: {
+			attributes: [
+				'accept', 'action', 'alt', 'autocomplete', 'autofocus', 'checked',
+				'disabled', 'enctype', 'form', 'height', 'list', 'max', 'maxlength',
+				'method', 'min', 'multiple', 'name', 'novalidate', 'pattern',
+				'placeholder', 'readonly', 'required', 'size', 'source', 'step',
+				'target', 'type', 'value', 'width', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		},
+		button: {
+			attributes: [
+				'action', 'autofocus', 'disabled', 'enctype', 'form', 'method', 'name',
+				'novalidate', 'target', 'type', 'value', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [INTERACTIVE_CONTENT].flatten,
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		select: {
+			attributes: [
+				'autofocus', 'disabled', 'form', 'multiple', 'name', 'size',
+				GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [:option, :optgroup],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		datalist: {
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			# FIXME: Either: phrasing content. Or: Zero or more option elements.
+			#		(exqiuio)
+			content_model: [:option, PHRASING_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		optgroup: {
+			attributes: ['disabled', 'label', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [:option],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		option: {
+			attributes: [
+				'disabled', 'label', 'selected', 'value', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: true,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		textarea: {
+			attributes: [
+				'autofocus', 'cols', 'disabled', 'form', 'maxlength', 'name',
+				'readonly', 'required', 'rows', 'wrap', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: true,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		output: {
+			attributes: ['for', 'form', 'name', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		}
+	}
+
+	# HTML5 Interactive Elements.
+	INTERACTIVE_ELEMENTS = {
+		details: {
+			attributes: ['open', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			# REVIEW: One legend element followed by flow content. (exiquio)
+			content_model: [:legend, FLOW_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		command: {
+			attributes: [
+				'type', 'label', 'icon', 'disabled', 'checked', 'radiogroup',
+				'radiogroup', GLOBAL_ATTRIBUTES
+			].flatten,
+			required_attributes: [],
+			content_model: [],
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: true, # REVIEW: (exiquio)
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: true
+		},
+		bb: {
+			attributes: ['type', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [INTERACTIVE_CONTENT].flatten,
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		menu: {
+			attributes: ['type', 'label', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			# REVIEW: Either: Zero or more li elements. Or: Flow content. (exiquio)
+			content_model: [:li, FLOW_CONTENT].flatten,
+			required_content: [],
+			prohibited_explicitly: [],
+			text_allowed: false, # REVIEW: (exiquio)
+			text_required: false,
+			is_required: false,
+			is_singleton: false, # REVIEW: (exiquio)
+			omit_end_tag: false
+		}
+	}
+
 	# HTML5 Miscellaneous Elements
 	MISCELLANEOUS_ELEMENTS = {
 		legend: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [PHRASING_CONTENT].flatten,
-			required_children: [],
+			content_model: [PHRASING_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -921,10 +1444,10 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		div: {
-			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
-			valid_children: [FLOW_CONTENT].flatten,
-			required_children: [],
+			content_model: [FLOW_CONTENT].flatten,
+			required_content: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
 			text_required: false,
@@ -943,6 +1466,10 @@ module BodyBuilder5
 	  GROUPING_CONTENT,
 		TEXT_LEVEL_SEMANTICS,
 		EDITS,
+		EMBEDDED_CONTENT,
+		TABULAR_DATA,
+		FORMS,
+		INTERACTIVE_ELEMENTS,
 		MISCELLANEOUS_ELEMENTS
 	].inject(:merge)
 
@@ -954,6 +1481,4 @@ module BodyBuilder5
 end
 
 # REVIEW: Review everything that is one to one with the HTML5 draft and ensure
-#	 proper aherence to the letter of the law. (exiquio)
-
-# TODO: Add contained_by to all tags. (exiquio)
+#		proper aherence to the letter of the law. (exiquio)
