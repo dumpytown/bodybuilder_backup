@@ -4,7 +4,7 @@
 
 # bodybuilder5_test.rb
 #
-#	riot tests for BodyBuilder5
+#	Riot tests for BodyBuilder5
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -32,7 +32,7 @@ FLOW_CONTENT = [
 	:blockquote, :ol, :ul, :dl, :a, :q, :cite, :em, :strong, :small, :mark, :dfn,
 	:abbr, :time, :progress, :meter, :code, :var, :samp, :kbd, :sub, :sup, :span,
 	:i, :b, :bdo, :ruby, :ins, :del, :figure, :img, :iframe, :embed, :object,
-	:video, :audio, :canvas, :map, :area, :table, :form, :fieldset, :label, 
+	:video, :audio, :canvas, :map, :area, :table, :form, :fieldset, :label,
 	:input, :button, :select, :datalist, :textarea, :output, :details, :command,
 	:bb, :menu, :div
 ]
@@ -50,7 +50,7 @@ HEADING_CONTENT = [
 ]
 
 PHRASING_CONTENT = [
-	:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn, 
+	:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn,
 	:abbr, :time, :progress, :meter, :code, :var, :samp, :kbd, :sub, :sup, :span,
 	:i, :b, :bdo, :ruby, :ins, :del, :img, :iframe, :embed, :object, :video,
 	:audio, :canvas, :area, :label, :input, :button, :select, :datalist,
@@ -209,7 +209,7 @@ context 'BodyBuilder5' do
 		value
 	end
 
-	asserts('VALID_ELEMENTS is an hash with the correct length') do 
+	asserts('VALID_ELEMENTS is an hash with the correct length') do
 		elements = topic::VALID_ELEMENTS
 		elements.is_a?(Hash) && elements.length == HTML5_ELEMENTS.length
 	end
@@ -257,19 +257,5 @@ context 'Builder5Exception' do
 	asserts('is an Exception') {topic.is_a? Exception}
 	asserts('is an BodyBuilderException') do
 		topic.is_a? BodyBuilder5::BodyBuilder5Exception
-	end
-end
-
-# Test functions
-context 'Document function' do
-	setup { method(:Document).call }
-	asserts('returns a BodyBuilder5::HeMan5') { topic.is_a? BodyBuilder5::HeMan5 }
-end
-
-context 'Template function' do 
-	setup { method(:Template).call }
-	
-	asserts('returns a BodyBuilder5::Skeletor5') do
-		topic.is_a? BodyBuilder5::Skeletor5
 	end
 end

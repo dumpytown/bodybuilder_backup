@@ -5,9 +5,10 @@ end
 
 desc 'Runs behaviour tests.'
 task :test do
-	sh './tests/bodybuilder5_test.rb'
-	sh './tests/heman5_test.rb'
-	sh './tests/skeletor5_test.rb'
+	sh 'tests/bodybuilder5_test.rb'
+	sh 'tests/globals_test.rb'
+	sh 'tests/heman5_test.rb'
+	sh 'tests/skeletor5_test.rb'
 end
 
 desc 'Build all task'
