@@ -28,13 +28,14 @@ module BodyBuilder5
 		# Object contructor that provides an interface to build HTML5 documents.
 		#
 		# Returns a BodyBuilder5::HeMan5 object which represents a HTML5 document
-		# with each of the tags/elments implemented as methods #tag, #tag_, and
-		# #_tag_ representing <tag>, </tag> and <tag></tag> respectively. Some tags
-		# do not have an end tag according to the HTML5 Draft and in such cases
-		# only the open method (#tag) is implemented. Otherwise expect all three.
+		# with each of the tags/elments implemented as methods #tag, #tag\_, and
+		# #\_tag\_ representing <tag>, </tag> and <tag></tag> respectively. Some
+		# tags do not have an end tag according to the HTML5 Draft and in such
+		# cases only the open method (#tag) is implemented. Otherwise expect all
+		# three.
 		#
-		# The #tag and #_tag_ methods take a optional Hash argument containing the
-		# optional keys :attributes and :text which are both Strings in value.
+		# The #tag and #\_tag\_ methods take a optional Hash argument containing
+		# the optional keys :attributes and :text which are both Strings in value.
 		#
 		# ===Paramaters:
 		#   None

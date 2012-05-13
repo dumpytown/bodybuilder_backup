@@ -144,13 +144,13 @@ to build HTML5 documents.</p>
 
 <p>Returns a <a href="HeMan5.html">BodyBuilder5::HeMan5</a> object which
 represents a HTML5 document with each of the tags/elments implemented as
-methods tag, tag_, and #<em>tag</em> representing &lt;tag&gt;, &lt;/tag&gt;
-and &lt;tag&gt;&lt;/tag&gt; respectively. Some tags do not have an end tag
+methods tag, tag_, and #_tag_ representing &lt;tag&gt;, &lt;/tag&gt; and
+&lt;tag&gt;&lt;/tag&gt; respectively. Some tags do not have an end tag
 according to the HTML5 Draft and in such cases only the open method (tag)
 is implemented. Otherwise expect all three.</p>
 
-<p>The tag and #<em>tag</em> methods take a optional Hash argument containing
-the optional keys :attributes and :text which are both Strings in value.</p>
+<p>The tag and #_tag_ methods take a optional Hash argument containing the
+optional keys :attributes and :text which are both Strings in value.</p>
 
 <h3 id="method-c-new-label-Paramaters%3A">Paramaters:</h3>
 
@@ -178,7 +178,7 @@ document.html_</pre>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/heman5.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/heman5.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
