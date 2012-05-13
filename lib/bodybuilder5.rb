@@ -657,7 +657,7 @@ module BodyBuilder5
 			omit_end_tag: false
 		},
 		dfn: {
-			valid_attributes: ['title', GLOBAL_ATTRIBUTES].flatten,
+			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
 			valid_children: [PHRASING_CONTENT].flatten,
 			required_children: [],
@@ -669,7 +669,7 @@ module BodyBuilder5
 			omit_end_tag: false,
 		},
 		abbr: {
-			valid_attributes: ['title', GLOBAL_ATTRIBUTES].flatten,
+			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
 			valid_children: [PHRASING_CONTENT].flatten,
 			required_children: [],
@@ -906,6 +906,34 @@ module BodyBuilder5
 		}
 	}
 
+	# HTML5 Miscellaneous Elements
+	MISCELLANEOUS_ELEMENTS = {
+		legend: {
+			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			valid_children: [PHRASING_CONTENT].flatten,
+			required_children: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		div: {
+			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			valid_children: [FLOW_CONTENT].flatten,
+			required_children: [],
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		}
+	}
+
 	# All valid HTML5 elements and their respective metadata.
 	VALID_ELEMENTS = [
 		ROOT_ELEMENT,
@@ -914,7 +942,8 @@ module BodyBuilder5
 	  SECTIONS,
 	  GROUPING_CONTENT,
 		TEXT_LEVEL_SEMANTICS,
-		EDITS
+		EDITS,
+		MISCELLANEOUS_ELEMENTS
 	].inject(:merge)
 
 	# EXCEPTIONS

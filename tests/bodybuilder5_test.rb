@@ -83,7 +83,9 @@ HTML5_ELEMENTS = [
 	:meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby,
 	:rt, :rp,
 	# Edits
-	:ins, :del
+	:ins, :del,
+	# Miscellaneous Elements
+	:legend, :div
 ]
 
 TAG_PROPERTIES = [
