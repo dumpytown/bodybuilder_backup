@@ -878,6 +878,34 @@ module BodyBuilder5
 		}
 	}
 
+	# HTML5 Edits elements.
+	EDITS = {
+		ins: {
+			valid_attributes: ['cite', 'datetime', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			valid_children: [], # REVIEW: Transparent. (exiquio)
+			required_children: [], # REVIEW: Transparent. (exiquio)
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		},
+		del: {
+			valid_attributes: ['cite', 'datetime', GLOBAL_ATTRIBUTES].flatten,
+			required_attributes: [],
+			valid_children: [], # REVIEW: Transparent. (exiquio)
+			required_children: [], # REVIEW: Transparent. (exiquio)
+			prohibited_explicitly: [],
+			text_allowed: true,
+			text_required: false,
+			is_required: false,
+			is_singleton: false,
+			omit_end_tag: false
+		}
+	}
+
 	# All valid HTML5 elements and their respective metadata.
 	VALID_ELEMENTS = [
 		ROOT_ELEMENT,
@@ -885,7 +913,8 @@ module BodyBuilder5
 		SCRIPTING,
 	  SECTIONS,
 	  GROUPING_CONTENT,
-		TEXT_LEVEL_SEMANTICS
+		TEXT_LEVEL_SEMANTICS,
+		EDITS
 	].inject(:merge)
 
 	# EXCEPTIONS

@@ -81,7 +81,9 @@ HTML5_ELEMENTS = [
 	# Text-Level Semantics
 	:a, :q, :cite, :em, :strong, :small, :mark, :dfn, :abbr, :time, :progress,
 	:meter, :code, :var, :samp, :kbd, :sub, :sup, :span, :i, :b, :bdo, :ruby,
-	:rt, :rp
+	:rt, :rp,
+	# Edits
+	:ins, :del
 ]
 
 TAG_PROPERTIES = [
