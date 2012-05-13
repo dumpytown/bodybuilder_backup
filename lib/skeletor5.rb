@@ -19,6 +19,7 @@
 #   http://dev.w3.org/html5/html-author/
 
 module BodyBuilder5
+	# TODO: Complete documentation. (exiquio)
 	# Provides an interface to create HTML5 templates.
 	class Skeletor5
 		# Provides an interface to create HTML5 templactes.
@@ -28,8 +29,6 @@ module BodyBuilder5
 		#
 		# ===Returns:
 		#   BodyBuilder5::Skeletor5
-		#
-		# TODO: Complete documentation. (exiquio)
 		def initialize
 		end
 	end

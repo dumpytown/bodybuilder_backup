@@ -41,8 +41,8 @@ module BodyBuilder5
 
 	# Most elements that are used in the body of documents and applications are
 	# categorised as flow content. Most of the elements used to mark up the main
-	#	content in the body of a page are considered to be flow content. In
-	#	general, this includes elements that are presented visually as either
+	# content in the body of a page are considered to be flow content. In
+	# general, this includes elements that are presented visually as either
 	# block level or inline level.
 	FLOW_CONTENT = [
 		:style, :script, :noscript, :section, :nav, :article, :aside, :h1, :h2,
@@ -651,6 +651,7 @@ def Document
 end
 
 
+#	TODO: Complete documentation. (exiquio)
 # Prefered constructor for creating a new BodyBuilder5::Skeletor5.
 #
 # ===Parameters:
@@ -658,8 +659,6 @@ end
 #
 # ===Returns:
 #		BodyBuilder5::Skeletor5
-#
-#	TODO: Complete documentation. (exiquio)
 def Template
 	BodyBuilder5::Skeletor5.new
 end
