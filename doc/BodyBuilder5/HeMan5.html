@@ -105,14 +105,8 @@
 
   <div id="description" class="description">
     
-<p>REVIEW: Ensure comment conformes to rdoc or something. (exiquio) FIXME:
-Rewrite comment to be more readable. (exiquio) HeMan performs the "heavy
-lifting" by providing access to all of the HTML5</p>
-
-<pre>tags as methods following the pattern #tag_name(opt_arg1, opt_arg1) for</pre>
-
-<p>&lt;tag_name&gt;, tag_name_ for &lt;/tag_name&gt; and #<em>tag_name</em>
-for  &lt;tag_name&gt;&lt;/tag_name&gt;.</p>
+<p><a href="HeMan5.html">HeMan5</a> provides an interface to build HTML5
+documents.</p>
 
   </div><!-- description -->
 
@@ -145,12 +139,46 @@ for  &lt;tag_name&gt;&lt;/tag_name&gt;.</p>
 
         <div class="method-description">
           
-          <p>FIXME: Document. (exiquio)</p>
+          <p><a href="../Object.html">Object</a> contructor that provides an interface
+to build HTML5 documents.</p>
+
+<p>Returns a <a href="HeMan5.html">BodyBuilder5::HeMan5</a> object which
+represents a HTML5 document with each of the tags/elments implemented as
+methods tag, tag_, and #<em>tag</em> representing &lt;tag&gt;, &lt;/tag&gt;
+and &lt;tag&gt;&lt;/tag&gt; respectively. Some tags do not have an end tag
+according to the HTML5 Draft and in such cases only the open method (tag)
+is implemented. Otherwise expect all three.</p>
+
+<p>The tag and #<em>tag</em> methods take a optional Hash argument containing
+the optional keys :attributes and :text which are both Strings in value.</p>
+
+<h3 id="method-c-new-label-Paramaters%3A">Paramaters:</h3>
+
+<pre>None</pre>
+
+<h3 id="method-c-new-label-Returns%3A">Returns:</h3>
+
+<pre>BodyBuilder::HeMan5</pre>
+
+<h3 id="method-c-new-label-Example%3A">Example:</h3>
+
+<pre>document = BodyBuilder5::HeMan5.new
+
+document.html
+  document.head
+    document._title_ {text: 'Hello World'}
+  document.head_
+  document.body
+    document.div {attributes: 'id=&quot;content&quot;'}
+      document._p_ {text: 'What it do, my ninja?'}
+    document.div_
+  document.body_
+document.html_</pre>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/heman5.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/heman5.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->

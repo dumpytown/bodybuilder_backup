@@ -2,7 +2,7 @@
 
 # skeletor5.rb
 #
-# FIXME: Provide a description here. (exiquio) 
+# FIXME: Provide a description here. (exiquio)
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -19,8 +19,17 @@
 #   http://dev.w3.org/html5/html-author/
 
 module BodyBuilder5
-	# FIXME: Document this class. (exiquio)
+	# Provides an interface to create HTML5 templates.
 	class Skeletor5
+		# Provides an interface to create HTML5 templactes.
+		#
+		# ===Parameters:
+		#   TODO
+		#
+		# ===Returns:
+		#   BodyBuilder5::Skeletor5
+		#
+		# TODO: Complete documentation. (exiquio)
 		def initialize
 		end
 	end

@@ -21,17 +21,29 @@
 require_relative 'heman5'
 require_relative 'skeletor5'
 
+# BodyBuilder5 namespace.
 module BodyBuilder5
 	# CONSTANTS
-	
+
 	# TODO: Global attributes are not yet implement in the HTML5 draft. (exiquio)
-	GLOBAL_ATTRIBUTES = [] 
+	# To be completed.
+	GLOBAL_ATTRIBUTES = []
 
 	# HTML5 Catagories
+
+	# Metadata content includes elements for marking up document metadata;
+	# marking up or linking to resources that describe the behaviour or
+	# presentation of the document; or indicate relationships with other
+	# documents.
 	METADATA_CONTENT = [
 		:title, :base, :link, :meta, :style, :script, :noscript, :command
 	]
 
+	# Most elements that are used in the body of documents and applications are
+	# categorised as flow content. Most of the elements used to mark up the main
+	#	content in the body of a page are considered to be flow content. In
+	#	general, this includes elements that are presented visually as either
+	# block level or inline level.
 	FLOW_CONTENT = [
 		:style, :script, :noscript, :section, :nav, :article, :aside, :h1, :h2,
 		:h3, :h4, :h5, :h6, :header, :footer, :address, :p, :hr, :br, :pre,
@@ -43,18 +55,30 @@ module BodyBuilder5
 		:output, :details, :command, :bb, :menu, :div
 	]
 
+
+	# These elements can have their own outlines, but the sections and headers
+	# inside these elements do not contribute to the outlines of their ancestors.
 	SECTIONING_ROOT = [
 		:body, :blockquote, :figure, :td
 	]
 
+	# Sectioning content is used for structuring a document into sections, each
+	# of which generally has its own heading. These elements provide a scope
+	# within which associated headers, footers and contact information apply.
 	SECTIONING_CONTENT = [
 		:section, :nav, :article, :aside
 	]
 
+	# Heading content includes the elements for marking up headers. Headings, in
+	# conjunction with the sectioning elements, are used to describe thestructure
+	# of the document.
 	HEADING_CONTENT = [
 		:h1, :h2, :h3, :h4, :h5, :h6, :header
 	]
 
+	# Phrasing content includes text and text-level markup. This is similar to
+	# the concept of inline level elements in HTML 4.01. Most elements that are
+	# categorised as phrasing content can only contain other phrasing content.
 	PHRASING_CONTENT = [
 		:script, :noscript, :br, :a, :q, :cite, :em, :strong, :small, :mark, :dfn,
 		:abbr, :time, :progress, :meter, :code, :var, :samp, :kbd, :sub, :sup,
@@ -63,16 +87,24 @@ module BodyBuilder5
 		:datalist, :textarea, :output, :command, :bb
 	]
 
+	# Embedded content includes elements that load external resources into the
+	# document.
 	EMBEDDED_CONTENT = [
 		:img, :iframe, :embed, :object, :video, :audio, :canvas
 	]
 
+	# Interactive elements are those that allow the user to interact with or
+	# activate in some way. Depending on the user?s browser and device, this
+	# could be performed using any kind of input device, such as, for example, a
+	# mouse, keyboard, touch screen or voice input.
 	INTERACTIVE_CONTENT = [
 		:a, :img, :video, :audio, :label, :input, :button, :select, :textarea,
 		:details, :bb, :menu
 	]
 
-	# HTML5 elements and their metadata 
+	# HTML5 elements and their metadata
+
+	# HTML Root Element.
 	ROOT_ELEMENT = {
 		html: {
 			valid_attributes: ['manifest', GLOBAL_ATTRIBUTES].flatten,
@@ -88,6 +120,7 @@ module BodyBuilder5
 		}
 	}
 
+	# HTML5 Document Metadata elements.
 	DOCUMENT_METADATA = {
 		head: {
 			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
@@ -163,13 +196,14 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: true, # REVIEW (exiquio)
+			text_required: true, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
 		}
 	}
 
+	# HTML5 Scripting elements.
 	SCRIPTING = {
 		script: {
 			valid_attributes: [
@@ -200,6 +234,7 @@ module BodyBuilder5
 		}
 	}
 
+	# HTML5 Sections elements
 	SECTIONS = {
 		body: {
 			valid_attributes: [
@@ -272,7 +307,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: true, # REVIEW (exiquio) 
+			text_required: true, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -284,7 +319,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: true, # REVIEW (exiquio)
+			text_required: true, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -296,7 +331,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: true, # REVIEW (exiquio)
+			text_required: true, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -308,7 +343,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: true, # REVIEW (exiquio)
+			text_required: true, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -320,7 +355,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: true, # REVIEW (exiquio)
+			text_required: true, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -332,7 +367,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: true, # REVIEW (exiquio)
+			text_required: true, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -344,10 +379,10 @@ module BodyBuilder5
 			# FIXME: This requires at least on heading content descendant. (exiquio)
 			required_children: [],
 			prohibited_explicitly: [SECTIONING_CONTENT, :header, :footer].flatten,
-			text_allowed: true, # REVIEW (exiquio)
+			text_allowed: true, # REVIEW: (exiquio)
 			text_required: false,
 			is_required: false,
-			is_singleton: true, # REVIEW (exiquio)
+			is_singleton: true, # REVIEW: (exiquio)
 			omit_end_tag: false
 		},
 		footer: {
@@ -358,10 +393,10 @@ module BodyBuilder5
 			prohibited_explicitly: [
 				HEADING_CONTENT, SECTIONING_CONTENT, :footer
 			].flatten,
-			text_allowed: true, # REVIEW (exiquio)
+			text_allowed: true, # REVIEW: (exiquio)
 			text_required: false,
 			is_required: false,
-			is_singleton: true, # REVIEW (exiquio)
+			is_singleton: true, # REVIEW: (exiquio)
 			omit_end_tag: false
 		},
 		address: {
@@ -372,14 +407,15 @@ module BodyBuilder5
 			prohibited_explicitly: [
 				HEADING_CONTENT, SECTIONING_CONTENT, :footer, :address
 			].flatten,
-			text_allowed: true, # REVIEW (exiquio)
+			text_allowed: true, # REVIEW: (exiquio)
 			text_required: false,
 			is_required: false,
-			is_singleton: true, # REVIEW (exiquio)
+			is_singleton: true, # REVIEW: (exiquio)
 			omit_end_tag: false
 		}
 	}
 
+	# HTML5 Grouping Content elements.
 	GROUPING_CONTENT = {
 		p: {
 			valid_attributes: [GLOBAL_ATTRIBUTES].flatten,
@@ -435,7 +471,7 @@ module BodyBuilder5
 			valid_children: [:dt, :dd],
 			# FIXME: This require zero or more pairs of one dt element followed by
 			#		one dd element. Hmm...? (exiquio)
-			required_children: [], 
+			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: false,
 			text_required: false,
@@ -486,7 +522,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: false, # REVIEW (exiquio)
+			text_required: false, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -510,7 +546,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: false, # REVIEW (exiquio)
+			text_required: false, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -522,7 +558,7 @@ module BodyBuilder5
 			required_children: [],
 			prohibited_explicitly: [],
 			text_allowed: true,
-			text_required: false, # REVIEW (exiquio)
+			text_required: false, # REVIEW: (exiquio)
 			is_required: false,
 			is_singleton: false,
 			omit_end_tag: false
@@ -531,13 +567,14 @@ module BodyBuilder5
 
 	# TODO: Complete. (exiquio)
 	# FIXME: Add tests. (exiquio)
+	# HTML5 Text-Level Semantics elements.
 	TEXT_LEVEL_SEMANTICS = {
 		a: {
 			valid_attributes: [
 				'href', 'target', 'ping', 'rel', 'media', 'hreflang', 'type',
 				GLOBAL_ATTRIBUTES
 			].flatten,
-			required_attributes: [], # REVIEW (exiquio)
+			required_attributes: [], # REVIEW: (exiquio)
 			# The following is transparent. See Issues #6. (exiquio)
 			valid_children: [],
 			required_children: [],
@@ -550,6 +587,7 @@ module BodyBuilder5
 		}
 	}
 
+	# All valid HTML5 elements and their respective metadata.
 	VALID_ELEMENTS = [
 		ROOT_ELEMENT,
 		DOCUMENT_METADATA,
@@ -565,27 +603,37 @@ module BodyBuilder5
 	end
 end
 
+# CLASSES
+
+# Global Object
+#
+# The following methods are defined in the global namespace:
+#		* Document()
+#		* Template()
+class Object
+end
 
 # METHODS
 
 # Preferred constructor for creating a new BodyBuilder5::HeMan5.
 #
-# Returns a BodyBuilder5::HeMan5 object which represents a HTML5 documents
+# Returns a BodyBuilder5::HeMan5 object which represents a HTML5 document
 # with each of the tags/elments implemented as methods #tag, #tag_, and
 # #_tag_ representing <tag>, </tag> and <tag></tag> respectively. Some tags
 # do not have an end tag according to the HTML5 Draft and in such cases only
-# the open method (#tag) is implemented. Otherwise expect all three. 
+# the open method (#tag) is implemented. Otherwise expect all three.
 #
 # The #tag and #_tag_ methods take a optional Hash argument containing the
 # optional keys :attributes and :text which are both Strings in value.
 #
 # ===Paramaters:
-#	None
+#		None
 #
 # ===Returns:
-#	BodyBuilder::HeMan5
+#		BodyBuilder::HeMan5
 #
 # ===Example:
+#
 #		document = Document()
 #
 #		document.html
@@ -606,10 +654,10 @@ end
 # Prefered constructor for creating a new BodyBuilder5::Skeletor5.
 #
 # ===Parameters:
-#	TODO
+#		TODO
 #
 # ===Returns:
-#	BodyBuilder5::Skeletor5
+#		BodyBuilder5::Skeletor5
 #
 #	TODO: Complete documentation. (exiquio)
 def Template
