@@ -5,10 +5,12 @@ end
 
 desc 'Runs behaviour tests.'
 task :test do
-	sh 'tests/bodybuilder5_test.rb'
-	sh 'tests/globals_test.rb'
-	sh 'tests/heman5_test.rb'
-	sh 'tests/skeletor5_test.rb'
+	[
+		'tests/bodybuilder5_test.rb'
+		'tests/globals_test.rb'
+		'tests/heman5_test.rb'
+		'tests/skeletor5_test.rb'
+	],each { |test_file| sh test_file }
 end
 
 desc 'Build all task'
