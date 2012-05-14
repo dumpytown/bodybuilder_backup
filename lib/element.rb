@@ -5,8 +5,6 @@
 module BodyBuilder5
 	# FIXME: Document. (exiquio)
 	class Element
-		include Enumerable
-
 		# FIXME: Document (exiquio)
 		def initialize parent, options
 			raise ArgumentException unless parent.is_? Element
@@ -25,12 +23,7 @@ module BodyBuilder5
 			@children << element
 		end
 
-		# FIXME: Document (exiquio)
-		def each
-			@children.each { |element| yield element }
-		end
-
-		attr_accessor :parent, :children, :attributes, :text
+		attr_reader :parent, :children, :attributes, :text
 end
 
 # FIXME: Write tests (exiquio)
