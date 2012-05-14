@@ -19,7 +19,7 @@
 #		http://dev.w3.org/html5/html-author/
 #		http://www.quackit.com/html_5/
 
-require_relative 'elements'
+#require_relative 'elements'
 require_relative 'globals'
 require_relative 'heman5'
 require_relative 'skeletor5'
