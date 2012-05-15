@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-# body_builder5.rb
+# bodybuilder5.rb
 #
 # An HTML5 builder for Ruby 1.9+
 #

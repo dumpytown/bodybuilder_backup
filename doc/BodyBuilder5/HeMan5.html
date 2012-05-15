@@ -160,27 +160,28 @@ optional keys :attributes and :text which are both Strings in value.</p>
 
 <h3 id="method-c-new-label-Returns%3A">Returns:</h3>
 
-<pre>BodyBuilder::HeMan5</pre>
+<pre>HeMan5</pre>
 
 <h3 id="method-c-new-label-Example%3A">Example:</h3>
 
 <pre>document = BodyBuilder5::HeMan5.new
-
-document.html
-  document.head
-    document._title_ {text: 'Hello World'}
-  document.head_
-  document.body
-    document.div {attributes: 'id=&quot;content&quot;'}
-      document._p_ {text: 'What it do, my ninja?'}
-    document.div_
-  document.body_
-document.html_</pre>
+          document.parse do
+                  html
+                          head
+                                  _title_ {text: 'Hello World'}
+                          head_
+                          body
+                                  div {attributes: 'id=&quot;content&quot;'}
+                                          _p_ {text: 'What it do, my ninja?'}
+                                  div_
+                          body_
+                  html_
+          end</pre>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/heman5.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/heman5.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->

@@ -28,7 +28,7 @@ module BodyBuilder5
 		#   TODO
 		#
 		# ===Returns:
-		#   BodyBuilder5::Skeletor5
+		#   Skeletor5 Instance.
 		def initialize
 		end
 	end

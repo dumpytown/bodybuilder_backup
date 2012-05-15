@@ -109,7 +109,13 @@
 
   <div id="description" class="description">
     
-<p>FIXME: Document. (exiquio)</p>
+<p>HTML5 element.</p>
+
+<pre>===Instance Variables:
+        parent [Element] - Parent Element.
+        children [Array] - Child Elmenets.
+        attributes [String] - HTML5 Element attributes.
+        text [String] - HTML5 Element text.</pre>
 
   </div><!-- description -->
 
@@ -194,22 +200,35 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(parent, options)</span>
+            class="method-args">(parent, properties)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          <p>FIXME: Document (exiquio)</p>
+          <p>Instantiates an HTML5 <a href="Element.html">Element</a> object.</p>
+
+<pre>===Paramaters:
+        parent [Element] - Parent Element.
+        properties [Hash] - Hash containing Element name, attributes and text.
+
+===Returns:
+        Element instance.</pre>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 9</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">parent</span>, <span class="ruby-identifier">options</span>
-        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentException</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">is_?</span> <span class="ruby-constant">Element</span>
-        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumengException</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_?</span> <span class="ruby-constant">Hash</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">parent</span>, <span class="ruby-identifier">properties</span>
+        <span class="ruby-identifier">raise</span>(
+                <span class="ruby-constant">ArgumentException</span>,
+                <span class="ruby-node">&quot;Expecting Element for parent, received #{parent.class}.&quot;</span>
+        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Element</span>
+        <span class="ruby-identifier">raise</span>(
+                <span class="ruby-constant">ArgumengException</span>,
+                <span class="ruby-node">&quot;Expecting Hash, received #{options.class}&quot;</span>
+        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
 
         <span class="ruby-ivar">@parent</span>, <span class="ruby-ivar">@children</span> = <span class="ruby-identifier">parent</span>, []
         <span class="ruby-ivar">@attributes</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:attribute</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:attributes</span>
@@ -242,14 +261,24 @@
 
         <div class="method-description">
           
-          <p>FIXME: Document (exiquio)</p>
+          <p>Append child <a href="Element.html">Element</a>.</p>
+
+<pre>===Parameters:
+        element [Element] - HTML5 Element.</pre>
+
+<h3 id="method-i-3C-3C-label-Returns%3A">Returns:</h3>
+
+<pre>Array of Children.</pre>
           
 
           
           <div class="method-source-code" id="3C-3C-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 21</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;&lt;</span>(<span class="ruby-identifier">element</span>)
-        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentException</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">ia_a?</span> <span class="ruby-constant">Element</span>
+        <span class="ruby-identifier">raise</span>(
+                <span class="ruby-constant">ArgumentException</span>,
+                <span class="ruby-node">&quot;Expecting Element, but received #{element.class}&quot;</span>
+        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Element</span>
         <span class="ruby-ivar">@children</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">element</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- 3C-3C-source -->

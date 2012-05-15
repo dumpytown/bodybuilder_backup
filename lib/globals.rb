@@ -43,22 +43,23 @@ end
 #		None
 #
 # ===Returns:
-#		BodyBuilder::HeMan5
+#		HeMan5 Instance.
 #
 # ===Example:
 #
 #		document = Document()
-#
-#		document.html
-#			document.head
-#				document._title_ {text: 'Hello World'}
-#			document.head_
-#			document.body
-#				document.div {attributes: 'id="content"'}
-#					document._p_ {text: 'What it do, my ninja?'}
-#				document.div_
-#			document.body_
-#		document.html_
+#   document.parse do
+#     html
+#       head
+#         _title_ {text: 'Hello World'}
+#       head_
+#       body
+#         div {attributes: 'id="content"'}
+#           _p_ {text: 'What it do, my ninja?'}
+#         div_
+#       body_
+#     html_
+#   end
 def Document
 	BodyBuilder5::HeMan5.new
 end
@@ -71,7 +72,7 @@ end
 #		TODO
 #
 # ===Returns:
-#		BodyBuilder5::Skeletor5
+#		Skeletor5 Instance.
 def Template
 	BodyBuilder5::Skeletor5.new
 end

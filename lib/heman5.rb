@@ -41,22 +41,23 @@ module BodyBuilder5
 		#   None
 		#
 		# ===Returns:
-		#   BodyBuilder::HeMan5
+		#   HeMan5
 		#
 		# ===Example:
 		#
 		#   document = BodyBuilder5::HeMan5.new
-		#
-		#   document.html
-		#     document.head
-		#       document._title_ {text: 'Hello World'}
-		#     document.head_
-		#     document.body
-		#       document.div {attributes: 'id="content"'}
-		#         document._p_ {text: 'What it do, my ninja?'}
-		#       document.div_
-		#     document.body_
-		#   document.html_
+		#		document.parse do
+		#			html
+		#				head
+		#					_title_ {text: 'Hello World'}
+		#				head_
+		#				body
+		#					div {attributes: 'id="content"'}
+		#						_p_ {text: 'What it do, my ninja?'}
+		#					div_
+		#				body_
+		#			html_
+		#		end
 		def initialize
 		end
 	end
