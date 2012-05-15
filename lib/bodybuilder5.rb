@@ -909,7 +909,7 @@ module BodyBuilder5
 	}
 
 	# HTML5 Embedded Content
-	EMBEDDED_CONTENT = {
+	EMBEDDED_CONTENT_0 = {
 		figure: {
 			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
@@ -1467,7 +1467,7 @@ module BodyBuilder5
 	  GROUPING_CONTENT,
 		TEXT_LEVEL_SEMANTICS,
 		EDITS,
-		EMBEDDED_CONTENT,
+		EMBEDDED_CONTENT_0,
 		TABULAR_DATA,
 		FORMS,
 		INTERACTIVE_ELEMENTS,
