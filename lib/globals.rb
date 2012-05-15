@@ -18,17 +18,17 @@
 
 # CLASSES
 
-# Global Object
+#Global Object namespace.
 #
-# The following methods are defined in the global namespace:
-#		* Document()
-#		* Template()
+#===Functions:
+#* Document()
+#* Template()
 class Object
 end
 
 # METHODS
 
-# Preferred constructor for creating a new BodyBuilder5::HeMan5.
+#Preferred constructor for creating a new BodyBuilder5::HeMan5.
 #
 # Returns a BodyBuilder5::HeMan5 object which represents a HTML5 documentwith
 # each of the tags/elments implemented as methods #tag, #tag\_, and #\_tag\_
@@ -39,40 +39,40 @@ end
 # The #tag and #\_tag\_ methods take a optional Hash argument containing
 # the optional keys :attributes and :text which are both Strings in value.
 #
-# ===Paramaters:
-#		None
+#===Paramaters:
+#* None
 #
-# ===Returns:
-#		HeMan5 Instance.
+#===Returns:
+#* HeMan5 Instance.
 #
-# ===Example:
+#===Example:
 #
-#		document = Document()
-#   document.parse do
-#     html
-#       head
-#         _title_ {text: 'Hello World'}
-#       head_
-#       body
-#         div {attributes: 'id="content"'}
-#           _p_ {text: 'What it do, my ninja?'}
-#         div_
-#       body_
-#     html_
-#   end
+#	document = Document()
+#	document.parse do
+#		html
+#			head
+#       _title_ {text: 'Hello World'}
+#     head_
+#     body
+#       div {attributes: 'id="content"'}
+#         _p_ {text: 'What it do, my ninja?'}
+#       div_
+#     body_
+#		html_
+#	end
 def Document
 	BodyBuilder5::HeMan5.new
 end
 
 
 #	TODO: Complete documentation. (exiquio)
-# Prefered constructor for creating a new BodyBuilder5::Skeletor5.
+#Prefered constructor for creating a new BodyBuilder5::Skeletor5.
 #
-# ===Parameters:
-#		TODO
+#===Parameters:
+#* TODO:
 #
-# ===Returns:
-#		Skeletor5 Instance.
+#===Returns:
+#* Skeletor5 Instance.
 def Template
 	BodyBuilder5::Skeletor5.new
 end

@@ -111,12 +111,6 @@
     
 <p>HTML5 element.</p>
 
-<pre>===Instance Variables:
-        parent [Element] - Parent Element.
-        children [Array] - Child Elmenets.
-        attributes [String] - HTML5 Element attributes.
-        text [String] - HTML5 Element text.</pre>
-
   </div><!-- description -->
 
   
@@ -143,7 +137,11 @@
 
         <div class="method-description">
         
-        
+        <dl class="rdoc-list label-list"><dt>String
+<dd><ul><li>
+<p>HTML5 <a href="Element.html">Element</a> attributes.</p>
+</li></ul>
+</dd></dl>
         
         </div>
       </div>
@@ -156,7 +154,11 @@
 
         <div class="method-description">
         
-        
+        <dl class="rdoc-list label-list"><dt>Array
+<dd><ul><li>
+<p>Child Elmenets.</p>
+</li></ul>
+</dd></dl>
         
         </div>
       </div>
@@ -169,7 +171,11 @@
 
         <div class="method-description">
         
-        
+        <dl class="rdoc-list label-list"><dt><a href="Element.html">Element</a>
+<dd><ul><li>
+<p>Parent <a href="Element.html">Element</a>.</p>
+</li></ul>
+</dd></dl>
         
         </div>
       </div>
@@ -182,7 +188,11 @@
 
         <div class="method-description">
         
-        
+        <dl class="rdoc-list label-list"><dt>String
+<dd><ul><li>
+<p>HTML5 <a href="Element.html">Element</a> text.</p>
+</li></ul>
+</dd></dl>
         
         </div>
       </div>
@@ -209,17 +219,23 @@
           
           <p>Instantiates an HTML5 <a href="Element.html">Element</a> object.</p>
 
-<pre>===Paramaters:
-        parent [Element] - Parent Element.
-        properties [Hash] - Hash containing Element name, attributes and text.
+<h3 id="method-c-new-label-Paramaters%3A">Paramaters:</h3>
+<ul><li>
+<p>parent [Element] - Parent <a href="Element.html">Element</a>.</p>
+</li><li>
+<p>properties [Hash] - Hash containing <a href="Element.html">Element</a>
+name, attributes and text.</p>
+</li></ul>
 
-===Returns:
-        Element instance.</pre>
+<h3 id="method-c-new-label-Returns%3A">Returns:</h3>
+<ul><li>
+<p><a href="Element.html">Element</a> instance.</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 38</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">parent</span>, <span class="ruby-identifier">properties</span>
         <span class="ruby-identifier">raise</span>(
                 <span class="ruby-constant">ArgumentException</span>,
@@ -263,17 +279,20 @@
           
           <p>Append child <a href="Element.html">Element</a>.</p>
 
-<pre>===Parameters:
-        element [Element] - HTML5 Element.</pre>
+<h3 id="method-i-3C-3C-label-Parameters%3A">Parameters:</h3>
+<ul><li>
+<p>element [Element] - HTML5 <a href="Element.html">Element</a>.</p>
+</li></ul>
 
 <h3 id="method-i-3C-3C-label-Returns%3A">Returns:</h3>
-
-<pre>Array of Children.</pre>
+<ul><li>
+<p>Array of Children.</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="3C-3C-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 62</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;&lt;</span>(<span class="ruby-identifier">element</span>)
         <span class="ruby-identifier">raise</span>(
                 <span class="ruby-constant">ArgumentException</span>,

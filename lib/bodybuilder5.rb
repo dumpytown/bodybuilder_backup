@@ -24,7 +24,7 @@ require_relative 'globals'
 require_relative 'heman5'
 require_relative 'skeletor5'
 
-# BodyBuilder5 namespace.
+#BodyBuilder5 namespace.
 module BodyBuilder5
 	# CONSTANTS
 

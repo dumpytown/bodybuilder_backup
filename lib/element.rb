@@ -19,22 +19,16 @@
 
 
 module BodyBuilder5
-	# HTML5 element.
-	#
-	#	===Instance Variables:
-	#		parent [Element] - Parent Element.
-	#		children [Array] - Child Elmenets.
-	#		attributes [String] - HTML5 Element attributes.
-	#		text [String] - HTML5 Element text.
+	#HTML5 element.
 	class Element
-		# Instantiates an HTML5 Element object.
+		#Instantiates an HTML5 Element object.
 		#
-		#	===Paramaters:
-		#		parent [Element] - Parent Element.
-		#		properties [Hash] - Hash containing Element name, attributes and text.
+		#===Paramaters:
+		#* parent [Element] - Parent Element.
+		#* properties [Hash] - Hash containing Element name, attributes and text.
 		#
-		#	===Returns:
-		#		Element instance.
+		#===Returns:
+		#* Element instance.
 		def initialize parent, properties
 			raise(
 				ArgumentException,
@@ -52,13 +46,13 @@ module BodyBuilder5
 
 		public
 
-		# Append child Element.
+		#Append child Element.
 		#
-		#	===Parameters:
-		#		element [Element] - HTML5 Element.
+		#===Parameters:
+		#* element [Element] - HTML5 Element.
 		#
-		# ===Returns:
-		#		Array of Children.
+		#===Returns:
+		#* Array of Children.
 		def <<(element)
 			raise(
 				ArgumentException,
@@ -67,7 +61,15 @@ module BodyBuilder5
 			@children << element
 		end
 
-		attr_reader :parent, :children, :attributes, :text
+		# [Element] - Parent Element.
+		attr_reader :parent
+		# [Array] - Child Elmenets.
+		attr_reader :children
+		# [String] - HTML5 Element attributes.
+		attr_reader :attributes
+		# [String] - HTML5 Element text.
+		attr_reader :text
+	end
 end
 
 # FIXME: Write tests (exiquio)

@@ -144,44 +144,46 @@ documents.</p>
           <p><a href="../Object.html">Object</a> contructor that provides an interface
 to build HTML5 documents.</p>
 
-<p>Returns a <a href="HeMan5.html">BodyBuilder5::HeMan5</a> object which
-represents a HTML5 document with each of the tags/elments implemented as
-methods tag, tag_, and #_tag_ representing &lt;tag&gt;, &lt;/tag&gt; and
-&lt;tag&gt;&lt;/tag&gt; respectively. Some tags do not have an end tag
-according to the HTML5 Draft and in such cases only the open method (tag)
-is implemented. Otherwise expect all three.</p>
+<pre>Returns a BodyBuilder5::HeMan5 object which represents a HTML5 document
+with each of the tags/elments implemented as methods #tag, #tag\_, and
+#\_tag\_ representing &lt;tag&gt;, &lt;/tag&gt; and &lt;tag&gt;&lt;/tag&gt; respectively. Some
+tags do not have an end tag according to the HTML5 Draft and in such
+cases only the open method (#tag) is implemented. Otherwise expect all
+three.
 
-<p>The tag and #_tag_ methods take a optional Hash argument containing the
-optional keys :attributes and :text which are both Strings in value.</p>
+The #tag and #\_tag\_ methods take a optional Hash argument containing
+the optional keys :attributes and :text which are both Strings in value.</pre>
 
 <h3 id="method-c-new-label-Paramaters%3A">Paramaters:</h3>
-
-<pre>None</pre>
+<ul><li>
+<p>None</p>
+</li></ul>
 
 <h3 id="method-c-new-label-Returns%3A">Returns:</h3>
-
-<pre>HeMan5</pre>
+<ul><li>
+<p><a href="HeMan5.html">HeMan5</a></p>
+</li></ul>
 
 <h3 id="method-c-new-label-Example%3A">Example:</h3>
 
 <pre>document = BodyBuilder5::HeMan5.new
-          document.parse do
-                  html
-                          head
-                                  _title_ {text: 'Hello World'}
-                          head_
-                          body
-                                  div {attributes: 'id=&quot;content&quot;'}
-                                          _p_ {text: 'What it do, my ninja?'}
-                                  div_
-                          body_
-                  html_
-          end</pre>
+    document.parse do
+            html
+                    head
+                            _title_ {text: 'Hello World'}
+                    head_
+                    body
+                            div {attributes: 'id=&quot;content&quot;'}
+                                    _p_ {text: 'What it do, my ninja?'}
+                            div_
+                    body_
+            html_
+    end</pre>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/heman5.rb, line 61</span>
+            <pre><span class="ruby-comment"># File lib/heman5.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->

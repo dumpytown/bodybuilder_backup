@@ -23,9 +23,8 @@ module BodyBuilder5
 	# FIXME: Rewrite comment to be more readable. (exiquio)
 
 	# HeMan5 provides an interface to build HTML5 documents.
-	#
 	class HeMan5
-		# Object contructor that provides an interface to build HTML5 documents.
+		#Object contructor that provides an interface to build HTML5 documents.
 		#
 		# Returns a BodyBuilder5::HeMan5 object which represents a HTML5 document
 		# with each of the tags/elments implemented as methods #tag, #tag\_, and
@@ -37,27 +36,27 @@ module BodyBuilder5
 		# The #tag and #\_tag\_ methods take a optional Hash argument containing
 		# the optional keys :attributes and :text which are both Strings in value.
 		#
-		# ===Paramaters:
-		#   None
+		#===Paramaters:
+		#* None
 		#
-		# ===Returns:
-		#   HeMan5
+		#===Returns:
+		#* HeMan5
 		#
-		# ===Example:
+		#===Example:
 		#
-		#   document = BodyBuilder5::HeMan5.new
-		#		document.parse do
-		#			html
-		#				head
-		#					_title_ {text: 'Hello World'}
-		#				head_
-		#				body
-		#					div {attributes: 'id="content"'}
-		#						_p_ {text: 'What it do, my ninja?'}
-		#					div_
-		#				body_
-		#			html_
-		#		end
+		# document = BodyBuilder5::HeMan5.new
+		#	document.parse do
+		#		html
+		#			head
+		#				_title_ {text: 'Hello World'}
+		#			head_
+		#			body
+		#				div {attributes: 'id="content"'}
+		#					_p_ {text: 'What it do, my ninja?'}
+		#				div_
+		#			body_
+		#		html_
+		#	end
 		def initialize
 		end
 	end

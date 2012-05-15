@@ -109,12 +109,14 @@
 
   <div id="description" class="description">
     
-<p>Global <a href="Object.html">Object</a></p>
+<p>Global <a href="Object.html">Object</a> namespace.</p>
 
-<p>The following methods are defined in the global namespace:</p>
-
-<pre>* Document()
-* Template()</pre>
+<h3 id="label-Functions%3A">Functions:</h3>
+<ul><li>
+<p>Document()</p>
+</li><li>
+<p>Template()</p>
+</li></ul>
 
   </div><!-- description -->
 
@@ -150,39 +152,40 @@
           <p>Preferred constructor for creating a new <a
 href="BodyBuilder5/HeMan5.html">BodyBuilder5::HeMan5</a>.</p>
 
-<p>Returns a <a href="BodyBuilder5/HeMan5.html">BodyBuilder5::HeMan5</a>
-object which represents a HTML5 documentwith each of the tags/elments
-implemented as methods tag, tag_, and #_tag_ representing &lt;tag&gt;,
-&lt;/tag&gt; and &lt;tag&gt;&lt;/tag&gt; respectively. Some tags do not
-have an end tag according to the HTML5 Draft and in such cases only the
-open method (tag) is implemented. Otherwise expect all three.</p>
+<pre>Returns a BodyBuilder5::HeMan5 object which represents a HTML5 documentwith
+each of the tags/elments implemented as methods #tag, #tag\_, and #\_tag\_
+representing &lt;tag&gt;, &lt;/tag&gt; and &lt;tag&gt;&lt;/tag&gt; respectively. Some tags do not
+have an end tag according to the HTML5 Draft and in such cases only the open
+method (#tag) is implemented. Otherwise expect all three.
 
-<p>The tag and #_tag_ methods take a optional Hash argument containing the
-optional keys :attributes and :text which are both Strings in value.</p>
+The #tag and #\_tag\_ methods take a optional Hash argument containing
+the optional keys :attributes and :text which are both Strings in value.</pre>
 
 <h3 id="method-i-Document-label-Paramaters%3A">Paramaters:</h3>
-
-<pre>None</pre>
+<ul><li>
+<p>None</p>
+</li></ul>
 
 <h3 id="method-i-Document-label-Returns%3A">Returns:</h3>
-
-<pre>HeMan5 Instance.</pre>
+<ul><li>
+<p>HeMan5 Instance.</p>
+</li></ul>
 
 <h3 id="method-i-Document-label-Example%3A">Example:</h3>
 
-<pre>            document = Document()
-document.parse do
-  html
-    head
-      _title_ {text: 'Hello World'}
-    head_
-    body
-      div {attributes: 'id=&quot;content&quot;'}
-        _p_ {text: 'What it do, my ninja?'}
-      div_
-    body_
-  html_
-end</pre>
+<pre>  document = Document()
+  document.parse do
+          html
+                  head
+  _title_ {text: 'Hello World'}
+head_
+body
+  div {attributes: 'id=&quot;content&quot;'}
+    _p_ {text: 'What it do, my ninja?'}
+  div_
+body_
+          html_
+  end</pre>
           
 
           
@@ -218,12 +221,14 @@ end</pre>
 href="BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>.</p>
 
 <h3 id="method-i-Template-label-Parameters%3A">Parameters:</h3>
-
-<pre>TODO</pre>
+<ul><li>
+<p>TODO:</p>
+</li></ul>
 
 <h3 id="method-i-Template-label-Returns%3A">Returns:</h3>
-
-<pre>Skeletor5 Instance.</pre>
+<ul><li>
+<p>Skeletor5 Instance.</p>
+</li></ul>
           
 
           
