@@ -88,6 +88,8 @@
   
     <li><a href="../BodyBuilder5/BodyBuilder5Exception.html">BodyBuilder5::BodyBuilder5Exception</a>
   
+    <li><a href="../BodyBuilder5/Element.html">BodyBuilder5::Element</a>
+  
     <li><a href="../BodyBuilder5/HeMan5.html">BodyBuilder5::HeMan5</a>
   
     <li><a href="../BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>
@@ -153,32 +155,36 @@ is implemented. Otherwise expect all three.</p>
 optional keys :attributes and :text which are both Strings in value.</p>
 
 <h3 id="method-c-new-label-Paramaters%3A">Paramaters:</h3>
-
-<pre>None</pre>
+<ul><li>
+<p>None</p>
+</li></ul>
 
 <h3 id="method-c-new-label-Returns%3A">Returns:</h3>
-
-<pre>BodyBuilder::HeMan5</pre>
+<ul><li>
+<p><a href="HeMan5.html">HeMan5</a></p>
+</li></ul>
 
 <h3 id="method-c-new-label-Example%3A">Example:</h3>
 
-<pre>document = BodyBuilder5::HeMan5.new
+<p>document = <a href="HeMan5.html#method-c-new">::new</a></p>
 
-document.html
-  document.head
-    document._title_ {text: 'Hello World'}
-  document.head_
-  document.body
-    document.div {attributes: 'id=&quot;content&quot;'}
-      document._p_ {text: 'What it do, my ninja?'}
-    document.div_
-  document.body_
-document.html_</pre>
+<pre>document.parse do
+        html
+                head
+                        _title_ {text: 'Hello World'}
+                head_
+                body
+                        div {attributes: 'id=&quot;content&quot;'}
+                                _p_ {text: 'What it do, my ninja?'}
+                        div_
+                body_
+        html_
+end</pre>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/heman5.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/heman5.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->

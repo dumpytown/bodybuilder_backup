@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-# body_builder5.rb
+# bodybuilder5.rb
 #
-# An HTML5 builder for Ruby 1.9+
+# An HTML5 DSL for Ruby 1.9.*.
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -19,7 +19,9 @@
 #		http://dev.w3.org/html5/html-author/
 #		http://www.quackit.com/html_5/
 
-require_relative 'globals'
+require_relative 'object'
+
+require_relative 'element'
 require_relative 'heman5'
 require_relative 'skeletor5'
 
@@ -908,7 +910,7 @@ module BodyBuilder5
 	}
 
 	# HTML5 Embedded Content
-	EMBEDDED_CONTENT = {
+	EMBEDDED_CONTENT_0 = {
 		figure: {
 			attributes: [GLOBAL_ATTRIBUTES].flatten,
 			required_attributes: [],
@@ -1466,7 +1468,7 @@ module BodyBuilder5
 	  GROUPING_CONTENT,
 		TEXT_LEVEL_SEMANTICS,
 		EDITS,
-		EMBEDDED_CONTENT,
+		EMBEDDED_CONTENT_0,
 		TABULAR_DATA,
 		FORMS,
 		INTERACTIVE_ELEMENTS,

@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/globals.rb
+    <li>lib/object.rb
   </ul>
 </nav>
 
@@ -74,6 +74,10 @@
     
     <li><a href="#method-i-Template">#Template</a>
     
+    <li><a href="#method-i-is_boolean-3F">#is_boolean?</a>
+    
+    <li><a href="#method-i-is_one_of-3F">#is_one_of?</a>
+    
   </ul>
 </nav>
 
@@ -89,6 +93,8 @@
     <li><a href="./BodyBuilder5.html">BodyBuilder5</a>
   
     <li><a href="./BodyBuilder5/BodyBuilder5Exception.html">BodyBuilder5::BodyBuilder5Exception</a>
+  
+    <li><a href="./BodyBuilder5/Element.html">BodyBuilder5::Element</a>
   
     <li><a href="./BodyBuilder5/HeMan5.html">BodyBuilder5::HeMan5</a>
   
@@ -107,12 +113,7 @@
 
   <div id="description" class="description">
     
-<p>Global <a href="Object.html">Object</a></p>
-
-<p>The following methods are defined in the global namespace:</p>
-
-<pre>* Document()
-* Template()</pre>
+<p>Global <a href="Object.html">Object</a> and namespace.</p>
 
   </div><!-- description -->
 
@@ -159,32 +160,35 @@ open method (tag) is implemented. Otherwise expect all three.</p>
 optional keys :attributes and :text which are both Strings in value.</p>
 
 <h3 id="method-i-Document-label-Paramaters%3A">Paramaters:</h3>
-
-<pre>None</pre>
+<ul><li>
+<p>None</p>
+</li></ul>
 
 <h3 id="method-i-Document-label-Returns%3A">Returns:</h3>
-
-<pre>BodyBuilder::HeMan5</pre>
+<ul><li>
+<p>HeMan5 Instance.</p>
+</li></ul>
 
 <h3 id="method-i-Document-label-Example%3A">Example:</h3>
 
-<pre>document = Document()
-
-document.html
-        document.head
-                document._title_ {text: 'Hello World'}
-        document.head_
-        document.body
-                document.div {attributes: 'id=&quot;content&quot;'}
-                        document._p_ {text: 'What it do, my ninja?'}
-                document.div_
-        document.body_
-document.html_</pre>
+<pre>  document = Document()
+  document.parse do
+          html
+                  head
+  _title_ {text: 'Hello World'}
+head_
+body
+  div {attributes: 'id=&quot;content&quot;'}
+    _p_ {text: 'What it do, my ninja?'}
+  div_
+body_
+          html_
+  end</pre>
           
 
           
           <div class="method-source-code" id="Document-source">
-            <pre><span class="ruby-comment"># File lib/globals.rb, line 62</span>
+            <pre><span class="ruby-comment"># File lib/object.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Document</span>
         <span class="ruby-constant">BodyBuilder5</span><span class="ruby-operator">::</span><span class="ruby-constant">HeMan5</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -215,17 +219,19 @@ document.html_</pre>
 href="BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>.</p>
 
 <h3 id="method-i-Template-label-Parameters%3A">Parameters:</h3>
-
-<pre>TODO</pre>
+<ul><li>
+<p>TODO:</p>
+</li></ul>
 
 <h3 id="method-i-Template-label-Returns%3A">Returns:</h3>
-
-<pre>BodyBuilder5::Skeletor5</pre>
+<ul><li>
+<p>Skeletor5 Instance.</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="Template-source">
-            <pre><span class="ruby-comment"># File lib/globals.rb, line 75</span>
+            <pre><span class="ruby-comment"># File lib/object.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Template</span>
         <span class="ruby-constant">BodyBuilder5</span><span class="ruby-operator">::</span><span class="ruby-constant">Skeletor5</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -237,6 +243,71 @@ href="BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>.</p>
 
         
       </div><!-- Template-method -->
+
+    
+      <div id="method-i-is_boolean-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_boolean?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>FIXME: <a href="Object.html#method-i-Document">#Document</a>. (exiquio)
+FIXME: Test. (exiquio)</p>
+          
+
+          
+          <div class="method-source-code" id="is_boolean-3F-source">
+            <pre><span class="ruby-comment"># File lib/object.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_boolean?</span>
+        [<span class="ruby-constant">TrueClass</span>, <span class="ruby-constant">FalseClass</span>].<span class="ruby-identifier">include?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_boolean-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_boolean-3F-method -->
+
+    
+      <div id="method-i-is_one_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_one_of?</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>FIXME: <a href="Object.html#method-i-Document">#Document</a>. (exiquio)
+FIXME: Test. (exiquio)</p>
+          
+
+          
+          <div class="method-source-code" id="is_one_of-3F-source">
+            <pre><span class="ruby-comment"># File lib/object.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_one_of?</span> *<span class="ruby-identifier">args</span>
+        <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">'*args must be Classes'</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Class</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">args</span>.<span class="ruby-identifier">include?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_one_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_one_of-3F-method -->
 
     
     </section><!-- public-instance-method-details -->

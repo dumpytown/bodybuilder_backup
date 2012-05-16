@@ -21,9 +21,11 @@ require 'riot'
 
 require_relative '../lib/bodybuilder5.rb'
 
-context 'HeMan5' do
-	setup { BodyBuilder5::HeMan5 }
+require_relative 'test_globals'
+
+context 'HeMan5 object' do
+	setup { BodyBuilder5::HeMan5.new }
 
 	# Test initialization
-	asserts('is a HeMan5') { topic.new.is_a? BodyBuilder5::HeMan5 }
+	asserts('is a HeMan5') { topic.is_a? BodyBuilder5::HeMan5 }
 end
