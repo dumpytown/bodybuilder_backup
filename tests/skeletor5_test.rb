@@ -21,9 +21,11 @@ require 'riot'
 
 require_relative '../lib/skeletor5.rb'
 
-context 'Skeletor5' do
-	setup {BodyBuilder5::Skeletor5}
+require_relative 'test_globals'
+
+context 'Skeletor5 object' do
+	setup {BodyBuilder5::Skeletor5.new}
 
 	# Test initialization
-	asserts('is a Skeletor5') {topic.new.is_a? BodyBuilder5::Skeletor5}
+	asserts('is a Skeletor5') {topic.is_a? BodyBuilder5::Skeletor5}
 end

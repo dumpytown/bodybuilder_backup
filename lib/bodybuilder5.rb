@@ -2,7 +2,7 @@
 
 # bodybuilder5.rb
 #
-# An HTML5 builder for Ruby 1.9+
+# An HTML5 DSL for Ruby 1.9.*.
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -19,12 +19,13 @@
 #		http://dev.w3.org/html5/html-author/
 #		http://www.quackit.com/html_5/
 
-#require_relative 'elements'
-require_relative 'globals'
+require_relative 'object'
+
+require_relative 'element'
 require_relative 'heman5'
 require_relative 'skeletor5'
 
-#BodyBuilder5 namespace.
+# BodyBuilder5 namespace.
 module BodyBuilder5
 	# CONSTANTS
 

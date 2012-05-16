@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-# globals.rb
+# object.rb
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -9,26 +9,33 @@
 # Author(s):
 #		Exiquio Cooper-Anderson (exiquio@gmail.com)
 #		Stephen Meyers (?@?.com)
-#
-# Requirements:
-#		Ruby 1.9.*+
-#
-# Reference:
-#		http://dev.w3.org/html5/html-author/
 
-# CLASSES
-
-#Global Object namespace.
-#
-#===Functions:
-#* Document()
-#* Template()
+# Global Object and namespace.
 class Object
+	public
+
+	# FIXME: Document. (exiquio)
+	# FIXME: Test. (exiquio)
+	def is_boolean?
+		[TrueClass, FalseClass].include? self.class
+	end
+
+	# FIXME: Document. (exiquio)
+	# FIXME: Test. (exiquio)
+	def is_one_of? *args
+		args.each do |arg|
+			raise ArgumentError, '*args must be Classes' unless arg.is_a? Class
+		end
+		args.include? self.class
+	end
 end
+
+
+# FIXME: Refactor as BodyBuilder5 classes. (exiquio)
 
 # METHODS
 
-#Preferred constructor for creating a new BodyBuilder5::HeMan5.
+# Preferred constructor for creating a new BodyBuilder5::HeMan5.
 #
 # Returns a BodyBuilder5::HeMan5 object which represents a HTML5 documentwith
 # each of the tags/elments implemented as methods #tag, #tag\_, and #\_tag\_
@@ -39,13 +46,13 @@ end
 # The #tag and #\_tag\_ methods take a optional Hash argument containing
 # the optional keys :attributes and :text which are both Strings in value.
 #
-#===Paramaters:
-#* None
+# === Paramaters:
+# * None
 #
-#===Returns:
-#* HeMan5 Instance.
+# === Returns:
+# * HeMan5 Instance.
 #
-#===Example:
+# === Example:
 #
 #	document = Document()
 #	document.parse do
@@ -66,16 +73,13 @@ end
 
 
 #	TODO: Complete documentation. (exiquio)
-#Prefered constructor for creating a new BodyBuilder5::Skeletor5.
+# Prefered constructor for creating a new BodyBuilder5::Skeletor5.
 #
-#===Parameters:
-#* TODO:
+# === Parameters:
+# * TODO:
 #
-#===Returns:
-#* Skeletor5 Instance.
+# === Returns:
+# * Skeletor5 Instance.
 def Template
 	BodyBuilder5::Skeletor5.new
 end
-
-# REVIEW: Review everything that is one to one with the HTML5 draft and ensure
-#	 proper aherence to the letter of the law. (exiquio)

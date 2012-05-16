@@ -2,8 +2,6 @@
 
 # heman5.rb
 #
-# FIXME: Provide description here. (exiquio)
-#
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
 # GPLv3 (www.gnu.org/licenses/gpl.html)
@@ -11,12 +9,6 @@
 # Author(s):
 #		Exiquio Cooper-Anderson (exiquio@gmail.com)
 #		Stephen Meyers (?@?.com)
-#
-# Requirements:
-#		Ruby 1.9.*+
-#
-# Reference:
-#		http://dev.w3.org/html5/html-author/
 
 module BodyBuilder5
 	# REVIEW: Ensure comment conformes to rdoc or something. (exiquio)
@@ -24,7 +16,7 @@ module BodyBuilder5
 
 	# HeMan5 provides an interface to build HTML5 documents.
 	class HeMan5
-		#Object contructor that provides an interface to build HTML5 documents.
+		# Object contructor that provides an interface to build HTML5 documents.
 		#
 		# Returns a BodyBuilder5::HeMan5 object which represents a HTML5 document
 		# with each of the tags/elments implemented as methods #tag, #tag\_, and
@@ -36,13 +28,13 @@ module BodyBuilder5
 		# The #tag and #\_tag\_ methods take a optional Hash argument containing
 		# the optional keys :attributes and :text which are both Strings in value.
 		#
-		#===Paramaters:
-		#* None
+		# === Paramaters:
+		# * None
 		#
-		#===Returns:
-		#* HeMan5
+		# === Returns:
+		# * HeMan5
 		#
-		#===Example:
+		# === Example:
 		#
 		# document = BodyBuilder5::HeMan5.new
 		#	document.parse do

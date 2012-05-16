@@ -2,9 +2,9 @@
 
 # -*- encoding : utf-8 -*-
 
-# globals_test.rb
+# object_test.rb
 #
-#	Behaviour tests for BodyBuilder5's globals.
+#	Behaviour tests for new hacks to Object.
 #
 # (C) Copyright 2012 Exiquio Cooper-Anderson, Stephen Meyers
 #
@@ -19,7 +19,9 @@
 
 require 'riot'
 
-require_relative '../lib/bodybuilder5.rb'
+require_relative '../lib/object.rb'
+
+require_relative 'test_globals'
 
 # Test functions
 context 'Document function' do

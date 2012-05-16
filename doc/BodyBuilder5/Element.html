@@ -137,11 +137,7 @@
 
         <div class="method-description">
         
-        <dl class="rdoc-list label-list"><dt>String
-<dd><ul><li>
-<p>HTML5 <a href="Element.html">Element</a> attributes.</p>
-</li></ul>
-</dd></dl>
+        <p>(String) HTML5 <a href="Element.html">Element</a> attributes.</p>
         
         </div>
       </div>
@@ -154,11 +150,20 @@
 
         <div class="method-description">
         
-        <dl class="rdoc-list label-list"><dt>Array
-<dd><ul><li>
-<p>Child Elmenets.</p>
-</li></ul>
-</dd></dl>
+        <p>(Array) Child Elements.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">name</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>(Symbol) HTML5 tag name.</p>
         
         </div>
       </div>
@@ -171,11 +176,8 @@
 
         <div class="method-description">
         
-        <dl class="rdoc-list label-list"><dt><a href="Element.html">Element</a>
-<dd><ul><li>
-<p>Parent <a href="Element.html">Element</a>.</p>
-</li></ul>
-</dd></dl>
+        <p>(<a href="Element.html">Element</a>) Parent <a
+href="Element.html">Element</a>.</p>
         
         </div>
       </div>
@@ -188,11 +190,7 @@
 
         <div class="method-description">
         
-        <dl class="rdoc-list label-list"><dt>String
-<dd><ul><li>
-<p>HTML5 <a href="Element.html">Element</a> text.</p>
-</li></ul>
-</dd></dl>
+        <p>(String) HTML5 <a href="Element.html">Element</a> text.</p>
         
         </div>
       </div>
@@ -221,10 +219,15 @@
 
 <h3 id="method-c-new-label-Paramaters%3A">Paramaters:</h3>
 <ul><li>
-<p>parent [Element] - Parent <a href="Element.html">Element</a>.</p>
+<p><code>parent</code> - (<a href="Element.html">Element</a>) Parent <a
+href="Element.html">Element</a>.</p>
 </li><li>
-<p>properties [Hash] - Hash containing <a href="Element.html">Element</a>
-name, attributes and text.</p>
+<p><code>properties</code> - (Hash) Hash containing <a
+href="Element.html">Element</a> properties:</p>
+
+<pre>* :name - (Symbol) [Required] HTML5 tag name.
+* :attributes - (String) [Optional] HTML5 tag attributes.
+* :text - (String) [Optional] HTML5 tag text.</pre>
 </li></ul>
 
 <h3 id="method-c-new-label-Returns%3A">Returns:</h3>
@@ -235,20 +238,28 @@ name, attributes and text.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 32</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">parent</span>, <span class="ruby-identifier">properties</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">parent</span>, <span class="ruby-identifier">properties</span>)
         <span class="ruby-identifier">raise</span>(
-                <span class="ruby-constant">ArgumentException</span>,
-                <span class="ruby-node">&quot;Expecting Element for parent, received #{parent.class}.&quot;</span>
-        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Element</span>
+                <span class="ruby-constant">ArgumentError</span>,
+                <span class="ruby-node">&quot;Expecting Element or nil for parent, received #{parent.class}.&quot;</span>
+        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">is_one_of?</span>(<span class="ruby-constant">NilClass</span>, <span class="ruby-constant">BodyBuilder5</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>)
         <span class="ruby-identifier">raise</span>(
-                <span class="ruby-constant">ArgumengException</span>,
-                <span class="ruby-node">&quot;Expecting Hash, received #{options.class}&quot;</span>
-        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+                <span class="ruby-constant">ArgumentError</span>,
+                <span class="ruby-node">&quot;Expecting Hash, received #{properties.class}&quot;</span>
+        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+        <span class="ruby-identifier">raise</span>(
+                <span class="ruby-constant">ArgumentError</span>,
+                <span class="ruby-string">'properties requires :name with a valid tag Symbol as its value.'</span>,
+        ) <span class="ruby-keyword">unless</span>(
+                        <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:name</span>) <span class="ruby-operator">&amp;&amp;</span>
+                        <span class="ruby-identifier">properties</span>[<span class="ruby-value">:name</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>) <span class="ruby-operator">&amp;&amp;</span>
+                        <span class="ruby-constant">VALID_ELEMENTS</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">properties</span>[<span class="ruby-value">:name</span>])
+                )
 
-        <span class="ruby-ivar">@parent</span>, <span class="ruby-ivar">@children</span> = <span class="ruby-identifier">parent</span>, []
-        <span class="ruby-ivar">@attributes</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:attribute</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:attributes</span>
-        <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:text</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value">:text</span>
+        <span class="ruby-ivar">@parent</span>, <span class="ruby-ivar">@name</span>, <span class="ruby-ivar">@children</span> = <span class="ruby-identifier">parent</span>, <span class="ruby-identifier">properties</span>[<span class="ruby-value">:name</span>], []
+        <span class="ruby-ivar">@attributes</span> = <span class="ruby-identifier">properties</span>[<span class="ruby-value">:attributes</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:attributes</span>)
+        <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">properties</span>[<span class="ruby-value">:text</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:text</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -281,7 +292,8 @@ name, attributes and text.</p>
 
 <h3 id="method-i-3C-3C-label-Parameters%3A">Parameters:</h3>
 <ul><li>
-<p>element [Element] - HTML5 <a href="Element.html">Element</a>.</p>
+<p><code>element</code> - (<a href="Element.html">Element</a>) HTML5 <a
+href="Element.html">Element</a>.</p>
 </li></ul>
 
 <h3 id="method-i-3C-3C-label-Returns%3A">Returns:</h3>
@@ -292,12 +304,12 @@ name, attributes and text.</p>
 
           
           <div class="method-source-code" id="3C-3C-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 56</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;&lt;</span>(<span class="ruby-identifier">element</span>)
         <span class="ruby-identifier">raise</span>(
-                <span class="ruby-constant">ArgumentException</span>,
+                <span class="ruby-constant">ArgumentError</span>,
                 <span class="ruby-node">&quot;Expecting Element, but received #{element.class}&quot;</span>
-        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Element</span>
+        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Element</span>)
         <span class="ruby-ivar">@children</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">element</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- 3C-3C-source -->

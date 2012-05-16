@@ -9,67 +9,70 @@
 # Author(s):
 #   Exiquio Cooper-Anderson (exiquio@gmail.com)
 #   Stephen Meyers (?@?.com)
-#
-# Requirement(s_:
-#   Ruby 1.9.*+
-#
-# Reference(s):
-#   http://dev.w3.org/html5/html-author/
-#   http://www.quackit.com/html_5/
-
 
 module BodyBuilder5
-	#HTML5 element.
+	# HTML5 element.
 	class Element
-		#Instantiates an HTML5 Element object.
+		# Instantiates an HTML5 Element object.
 		#
-		#===Paramaters:
-		#* parent [Element] - Parent Element.
-		#* properties [Hash] - Hash containing Element name, attributes and text.
+		# === Paramaters:
+		# * +parent+ - (Element) Parent Element.
+		# * +properties+ - (Hash) Hash containing Element properties:
+		#		* :name - (Symbol) [Required] HTML5 tag name.
+		#		* :attributes - (String) [Optional] HTML5 tag attributes.
+		#		* :text - (String) [Optional] HTML5 tag text.
 		#
-		#===Returns:
-		#* Element instance.
-		def initialize parent, properties
+		# === Returns:
+		# * Element instance.
+		def initialize(parent, properties)
 			raise(
-				ArgumentException,
-				"Expecting Element for parent, received #{parent.class}."
-			) unless parent.kind_of? Element
+				ArgumentError,
+				"Expecting Element or nil for parent, received #{parent.class}."
+			) unless parent.is_one_of?(NilClass, BodyBuilder5::Element)
 			raise(
-				ArgumengException,
-				"Expecting Hash, received #{options.class}"
-			) unless options.is_a? Hash
+				ArgumentError,
+				"Expecting Hash, received #{properties.class}"
+			) unless properties.is_a?(Hash)
+			raise(
+				ArgumentError,
+				'properties requires :name with a valid tag Symbol as its value.',
+			) unless(
+					properties.has_key?(:name) &&
+					properties[:name].is_a?(Symbol) &&
+					VALID_ELEMENTS.has_key?(properties[:name])
+				)
 
-			@parent, @children = parent, []
-			@attributes = options[:attribute] if options.has_key? :attributes
-			@text = options[:text] if options.has_key? :text
+			@parent, @name, @children = parent, properties[:name], []
+			@attributes = properties[:attributes] if properties.has_key?(:attributes)
+			@text = properties[:text] if properties.has_key?(:text)
 		end
 
 		public
 
-		#Append child Element.
+		# Append child Element.
 		#
-		#===Parameters:
-		#* element [Element] - HTML5 Element.
+		# === Parameters:
+		# * +element+ - (Element) HTML5 Element.
 		#
-		#===Returns:
-		#* Array of Children.
+		# === Returns:
+		# * Array of Children.
 		def <<(element)
 			raise(
-				ArgumentException,
+				ArgumentError,
 				"Expecting Element, but received #{element.class}"
-			) unless element.kind_of? Element
+			) unless element.kind_of?(Element)
 			@children << element
 		end
 
-		# [Element] - Parent Element.
+		# (Symbol) HTML5 tag name.
+		attr_reader :name
+		# (Element) Parent Element.
 		attr_reader :parent
-		# [Array] - Child Elmenets.
+		# (Array) Child Elements.
 		attr_reader :children
-		# [String] - HTML5 Element attributes.
+		# (String) HTML5 Element attributes.
 		attr_reader :attributes
-		# [String] - HTML5 Element text.
+		# (String) HTML5 Element text.
 		attr_reader :text
 	end
 end
-
-# FIXME: Write tests (exiquio)
