@@ -101,20 +101,22 @@ context 'Element object' do
 	# Test methods
 	asserts('reponds to :<<') { topic.respond_to?(:<<) }
 
-	asserts_topic.raises(ArgumentError) { topic << '' }
+	context ':<<' do
+		asserts_topic.raises(ArgumentError) { topic << '' }
 
-	asserts_topic.raises(ArgumentError) { topic << Array }
+		asserts_topic.raises(ArgumentError) { topic << Array }
 
-	asserts_topic.raises(ArgumentError) { topic << Array.new}
+		asserts_topic.raises(ArgumentError) { topic << Array.new}
 
-	asserts_topic.raises(ArgumentError) { topic << BodyBuilder5::Element }
+		asserts_topic.raises(ArgumentError) { topic << BodyBuilder5::Element }
 
-	denies_topic.raises(ArgumentError) { topic << topic}
+		denies_topic.raises(ArgumentError) { topic << topic}
 
-	asserts('appends to @children') do
-		child_count = topic.children.length
-		element = BodyBuilder5::Element.new(nil, {name: :div})
-		topic << element
-		topic.children.length == child_count + 1 && topic.children[-1] == element
+		asserts('appends to @children') do
+			child_count = topic.children.length
+			element = BodyBuilder5::Element.new(nil, {name: :div})
+			topic << element
+			topic.children.length == child_count + 1 && topic.children[-1] == element
+		end
 	end
 end
