@@ -188,7 +188,7 @@ body_
 
           
           <div class="method-source-code" id="Document-source">
-            <pre><span class="ruby-comment"># File lib/object.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/object.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Document</span>
         <span class="ruby-constant">BodyBuilder5</span><span class="ruby-operator">::</span><span class="ruby-constant">HeMan5</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -231,7 +231,7 @@ href="BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>.</p>
 
           
           <div class="method-source-code" id="Template-source">
-            <pre><span class="ruby-comment"># File lib/object.rb, line 83</span>
+            <pre><span class="ruby-comment"># File lib/object.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-constant">Template</span>
         <span class="ruby-constant">BodyBuilder5</span><span class="ruby-operator">::</span><span class="ruby-constant">Skeletor5</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -256,13 +256,25 @@ href="BodyBuilder5/Skeletor5.html">BodyBuilder5::Skeletor5</a>.</p>
 
         <div class="method-description">
           
-          <p>FIXME: <a href="Object.html#method-i-Document">#Document</a>. (exiquio)
-FIXME: Test. (exiquio)</p>
+          <p>Returns true if instance is of TrueClass or FalseClass and false if not.</p>
+
+<pre>=== Parameters:
+* None</pre>
+
+<h3 id="method-i-is_boolean-3F-label-Returns%3A">Returns:</h3>
+<ul><li>
+<p>TrueClass || FalseClass</p>
+</li></ul>
+
+<h3 id="method-i-is_boolean-3F-label-Example%3A">Example:</h3>
+
+<pre>'html'.is_boolean? # false
+true.is_boolean? # true</pre>
           
 
           
           <div class="method-source-code" id="is_boolean-3F-source">
-            <pre><span class="ruby-comment"># File lib/object.rb, line 19</span>
+            <pre><span class="ruby-comment"># File lib/object.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_boolean?</span>
         [<span class="ruby-constant">TrueClass</span>, <span class="ruby-constant">FalseClass</span>].<span class="ruby-identifier">include?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>
 <span class="ruby-keyword">end</span></pre>
@@ -287,18 +299,40 @@ FIXME: Test. (exiquio)</p>
 
         <div class="method-description">
           
-          <p>FIXME: <a href="Object.html#method-i-Document">#Document</a>. (exiquio)
-FIXME: Test. (exiquio)</p>
+          <p>Returns true if arguments include the class of instance, false if not.</p>
+
+<h3 id="method-i-is_one_of-3F-label-Parameters%3A">Parameters:</h3>
+<ul><li>
+<p>+*args+ - (Class) [Required, ...Optional] Classes to be checked against</p>
+
+<pre class="ruby"><span class="ruby-identifier">object</span><span class="ruby-string">'s class.
+</span></pre>
+</li></ul>
+
+<h3 id="method-i-is_one_of-3F-label-Returns%3A">Returns:</h3>
+
+<pre>* TruthClass || FalseClass</pre>
+
+<h3 id="method-i-is_one_of-3F-label-Example%3A">Example:</h3>
+
+<pre>'html'.is_one_of?(NilClass, Array) # false
+1.is_one_of?(Fixnum, String, Hash) # true</pre>
           
 
           
           <div class="method-source-code" id="is_one_of-3F-source">
-            <pre><span class="ruby-comment"># File lib/object.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/object.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_one_of?</span> *<span class="ruby-identifier">args</span>
+        <span class="ruby-identifier">raise</span>(
+                <span class="ruby-constant">ArgumentError</span>,
+                <span class="ruby-string">'At least one Class must be provided'</span>
+        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+
         <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
                 <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">'*args must be Classes'</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Class</span>
         <span class="ruby-keyword">end</span>
-        <span class="ruby-identifier">args</span>.<span class="ruby-identifier">include?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>
+
+        <span class="ruby-identifier">args</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- is_one_of-3F-source -->
           

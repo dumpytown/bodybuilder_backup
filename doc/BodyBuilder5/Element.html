@@ -219,10 +219,10 @@ href="Element.html">Element</a>.</p>
 
 <h3 id="method-c-new-label-Paramaters%3A">Paramaters:</h3>
 <ul><li>
-<p><code>parent</code> - (<a href="Element.html">Element</a>) Parent <a
-href="Element.html">Element</a>.</p>
+<p><code>parent</code> - (<a href="Element.html">Element</a>) [Required]
+Parent <a href="Element.html">Element</a>.</p>
 </li><li>
-<p><code>properties</code> - (Hash) Hash containing <a
+<p><code>properties</code> - (Hash) [Required] Hash containing <a
 href="Element.html">Element</a> properties:</p>
 
 <pre>* :name - (Symbol) [Required] HTML5 tag name.
@@ -233,12 +233,15 @@ href="Element.html">Element</a> properties:</p>
 <h3 id="method-c-new-label-Returns%3A">Returns:</h3>
 <ul><li>
 <p><a href="Element.html">Element</a> instance.</p>
+
+<pre>=== Example:
+        html = BodyBuilder5::Element.new(nil, {name: :html})</pre>
 </li></ul>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 27</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">parent</span>, <span class="ruby-identifier">properties</span>)
         <span class="ruby-identifier">raise</span>(
                 <span class="ruby-constant">ArgumentError</span>,
@@ -292,19 +295,24 @@ href="Element.html">Element</a> properties:</p>
 
 <h3 id="method-i-3C-3C-label-Parameters%3A">Parameters:</h3>
 <ul><li>
-<p><code>element</code> - (<a href="Element.html">Element</a>) HTML5 <a
-href="Element.html">Element</a>.</p>
+<p><code>element</code> - (<a href="Element.html">Element</a>) [Required]
+HTML5 <a href="Element.html">Element</a>.</p>
 </li></ul>
 
 <h3 id="method-i-3C-3C-label-Returns%3A">Returns:</h3>
 <ul><li>
 <p>Array of Children.</p>
+
+<pre>=== Example:
+        p = BodyBuilder5::Element.new(div, {name: :p, text: 'Hello, world.'})
+        div &lt;&lt; p
+        div.children # [.., P Instance, ..]</pre>
 </li></ul>
           
 
           
           <div class="method-source-code" id="3C-3C-source">
-            <pre><span class="ruby-comment"># File lib/element.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/element.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;&lt;</span>(<span class="ruby-identifier">element</span>)
         <span class="ruby-identifier">raise</span>(
                 <span class="ruby-constant">ArgumentError</span>,

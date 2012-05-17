@@ -16,14 +16,17 @@ module BodyBuilder5
 		# Instantiates an HTML5 Element object.
 		#
 		# === Paramaters:
-		# * +parent+ - (Element) Parent Element.
-		# * +properties+ - (Hash) Hash containing Element properties:
+		# * +parent+ - (Element) [Required] Parent Element.
+		# * +properties+ - (Hash) [Required] Hash containing Element properties:
 		#		* :name - (Symbol) [Required] HTML5 tag name.
 		#		* :attributes - (String) [Optional] HTML5 tag attributes.
 		#		* :text - (String) [Optional] HTML5 tag text.
 		#
 		# === Returns:
 		# * Element instance.
+		#
+		#	=== Example:
+		#		html = BodyBuilder5::Element.new(nil, {name: :html})
 		def initialize(parent, properties)
 			raise(
 				ArgumentError,
@@ -52,10 +55,15 @@ module BodyBuilder5
 		# Append child Element.
 		#
 		# === Parameters:
-		# * +element+ - (Element) HTML5 Element.
+		# * +element+ - (Element) [Required] HTML5 Element.
 		#
 		# === Returns:
 		# * Array of Children.
+		#
+		#	=== Example:
+		#		p = BodyBuilder5::Element.new(div, {name: :p, text: 'Hello, world.'})
+		#		div << p
+		#		div.children # [.., P Instance, ..]
 		def <<(element)
 			raise(
 				ArgumentError,

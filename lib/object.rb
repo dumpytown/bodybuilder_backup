@@ -14,19 +14,44 @@
 class Object
 	public
 
-	# FIXME: Document. (exiquio)
-	# FIXME: Test. (exiquio)
+	# Returns true if instance is of TrueClass or FalseClass and false if not.
+	#
+	#	=== Parameters:
+	#	* None
+	#
+	# === Returns:
+	# * TrueClass || FalseClass
+	#
+	# === Example:
+	#		'html'.is_boolean? # false
+	#		true.is_boolean? # true
 	def is_boolean?
 		[TrueClass, FalseClass].include? self.class
 	end
 
-	# FIXME: Document. (exiquio)
-	# FIXME: Test. (exiquio)
+	# Returns true if arguments include the class of instance, false if not.
+	#
+	# === Parameters:
+	# *	+*args+ - (Class) [Required, ...Optional] Classes to be checked against
+	#			object's class.
+	#
+	# === Returns:
+	#	* TruthClass || FalseClass
+	#
+	# === Example:
+	#		'html'.is_one_of?(NilClass, Array) # false
+	#		1.is_one_of?(Fixnum, String, Hash) # true
 	def is_one_of? *args
+		raise(
+			ArgumentError,
+			'At least one Class must be provided'
+		) unless args.length >= 1
+
 		args.each do |arg|
 			raise ArgumentError, '*args must be Classes' unless arg.is_a? Class
 		end
-		args.include? self.class
+
+		args.include?(self.class)
 	end
 end
 
