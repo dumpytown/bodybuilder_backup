@@ -82,12 +82,17 @@ context 'Element object' do
 		topic.respond_to?(:children) && topic.children.is_a?(Array)
 	end
 
-	asserts("parent's attributes exists, is a String and == DIV_ATTRIBUTES") do
+	asserts('parent attributes exists, is a String and == DIV_ATTRIBUTES') do
 		(
 			topic.parent.respond_to?(:attributes) &&
 			topic.parent.attributes.is_a?(String) &&
 			topic.parent.attributes == DIV_ATTRIBUTES
 		)
+	end
+
+	asserts('parent attribute is mutable') do
+		topic.parent = 'fish' # FIXME: Rewrite to fail.
+		topic.parent == 'fish'
 	end
 
 	asserts('attribute text exists, is a String and == P_TEXT') do
