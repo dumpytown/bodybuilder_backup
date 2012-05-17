@@ -72,10 +72,17 @@ module BodyBuilder5
 			@children << element
 		end
 
+		# FIXME: Document. (exiquio)
+		# FIXME: Test. (exiquio)
+		def to_s
+			"#{@name} - parent: #{@parent}, children: #{@children}, attributes: " +
+			"#{@attributes} text: #{@text}"
+		end
+
 		# (Symbol) HTML5 tag name.
 		attr_reader :name
 		# (Element) Parent Element.
-		attr_reader :parent
+		attr_accessor :parent
 		# (Array) Child Elements.
 		attr_reader :children
 		# (String) HTML5 Element attributes.
