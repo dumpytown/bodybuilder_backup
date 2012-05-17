@@ -110,3 +110,7 @@ TAG_PROPERTIES = [
 ]
 
 DIV_ATTRIBUTES, P_TEXT = 'id="text"', 'Pardon my Swahili.'
+RENDER_SNIPPET = '<p>Pardon my Swahili.'
+ELEMENT_TO_S = 'Element[p -> parent: Element[div -> parent: , children: [], ' +
+	'attributes: id="text" text: ], children: [], attributes:  text: Pardon ' +
+	'my Swahili.]'

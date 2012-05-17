@@ -46,8 +46,16 @@ module BodyBuilder5
 				)
 
 			@parent, @name, @children = parent, properties[:name], []
-			@attributes = properties[:attributes] if properties.has_key?(:attributes)
-			@text = properties[:text] if properties.has_key?(:text)
+			@attributes = (
+				properties.has_key?(:attributes) &&
+				properties[:attributes] ||
+				nil
+			)
+			@text = (
+				properties.has_key?(:text) &&
+				properties[:text] ||
+				nil
+			)
 		end
 
 		public
@@ -72,11 +80,33 @@ module BodyBuilder5
 			@children << element
 		end
 
-		# FIXME: Document. (exiquio)
-		# FIXME: Test. (exiquio)
+		# Returns HTML5 markup of element and its children.
+		#
+		# === Returns:
+		#	* String markup.
+		def render
+			markup = []
+			markup << '<!doctype html>' if @name == :html
+			markup << "<#{@name}>" unless @attributes or @text
+			markup << "<#{@name} #{@attributes}>" if @attributes and not @text
+			markup << "<#{@name}>#{@text}" unless @attributes and not @text
+			markup << "<#{@name} #{@attributes}>#{@text}" if @attributes and @text
+
+			@children.each do |child|
+				markup << child.render unless child.is_a?(Symbol)
+				markup << "</#{@name}>" if child == :close_tag
+			end
+
+			markup.join
+		end
+
+		# Returns pretty print of element.
+		#
+		# === Returns:
+		#		String
 		def to_s
-			"#{@name} - parent: #{@parent}, children: #{@children}, attributes: " +
-			"#{@attributes} text: #{@text}"
+			"Element[#{@name} -> parent: #{@parent}, children: #{@children}, attributes: " +
+			"#{@attributes} text: #{@text}]"
 		end
 
 		# (Symbol) HTML5 tag name.

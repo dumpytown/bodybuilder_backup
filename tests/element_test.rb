@@ -91,8 +91,10 @@ context 'Element object' do
 	end
 
 	asserts('parent attribute is mutable') do
+		parent = topic.parent
 		topic.parent = 'fish' # FIXME: Rewrite to fail.
-		topic.parent == 'fish'
+		topic.parent = parent
+		parent == topic.parent
 	end
 
 	asserts('attribute text exists, is a String and == P_TEXT') do
@@ -122,6 +124,19 @@ context 'Element object' do
 			element = BodyBuilder5::Element.new(nil, {name: :div})
 			topic << element
 			topic.children.length == child_count + 1 && topic.children[-1] == element
+		end
+	end
+
+	context ':render' do
+		asserts('returns a String == RENDER_SNIPPET') do
+			markup = topic.render
+			markup.is_a?(String) && markup == RENDER_SNIPPET
+		end
+	end
+
+	context ':to_s' do
+		asserts('returns a String == ELEMENT_TO_S') do
+			topic.to_s.is_a?(String) && topic.to_s == ELEMENT_TO_S
 		end
 	end
 end
