@@ -74,6 +74,8 @@
     
     <li><a href="#method-i-3C-3C">#&lt;&lt;</a>
     
+    <li><a href="#method-i-to_s">#to_s</a>
+    
   </ul>
 </nav>
 
@@ -171,7 +173,7 @@
       <div id="attribute-i-parent" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">parent</span><span
-            class="attribute-access-type">[R]</span>
+            class="attribute-access-type">[RW]</span>
         </div>
 
         <div class="method-description">
@@ -328,6 +330,37 @@ HTML5 <a href="Element.html">Element</a>.</p>
 
         
       </div><!-- 3C-3C-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>FIXME: Document. (exiquio) FIXME: Test. (exiquio)</p>
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File lib/element.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+        <span class="ruby-node">&quot;#{@name} - parent: #{@parent}, children: #{@children}, attributes: &quot;</span> <span class="ruby-operator">+</span>
+        <span class="ruby-node">&quot;#{@attributes} text: #{@text}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
 
     
     </section><!-- public-instance-method-details -->

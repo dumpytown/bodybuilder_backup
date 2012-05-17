@@ -28,4 +28,16 @@ context 'HeMan5 object' do
 
 	# Test initialization
 	asserts('is a HeMan5') { topic.is_a? BodyBuilder5::HeMan5 }
+
+	# Single out @parent
+	asserts('@parent is nil') { topic.instance_variable_get(:@parent) == nil }
+
+	# Test Methods
+	HTML5_ELEMENTS.each do |tag|
+		asserts("responds to \:#{tag}") { topic.respond_to?(tag) }
+
+		asserts("responds to \:#{tag}_") { topic.respond_to?("#{tag}_".to_sym) }
+
+		asserts("responds to \:_#{tag}_") { topic.respond_to?("_#{tag}_".to_sym) }
+	end
 end

@@ -11,8 +11,6 @@
 #		Stephen Meyers (?@?.com)
 
 module BodyBuilder5
-	# REVIEW: Ensure comment conformes to rdoc or something. (exiquio)
-	# FIXME: Rewrite comment to be more readable. (exiquio)
 
 	# HeMan5 provides an interface to build HTML5 documents.
 	class HeMan5
@@ -32,24 +30,107 @@ module BodyBuilder5
 		# * None
 		#
 		# === Returns:
-		# * HeMan5
+		# * HeMan5 object
 		#
 		# === Example:
-		#
-		# document = BodyBuilder5::HeMan5.new
-		#	document.parse do
-		#		html
-		#			head
-		#				_title_ {text: 'Hello World'}
-		#			head_
-		#			body
-		#				div {attributes: 'id="content"'}
-		#					_p_ {text: 'What it do, my ninja?'}
-		#				div_
-		#			body_
-		#		html_
-		#	end
+		# # FIXME: Provide usage example. (exiquio)
 		def initialize
+			@parent = nil
+
+			VALID_ELEMENTS.each do |tag_name, tag_properties|
+				# HACK: This metaprogramming will be replaced with an ember script that
+				# writes HeMan5 and all of its methods to disk to prevent memory leaks
+				# and reduce the performance hit. It will also give us a chance to
+				# benchmark and compare the performance for further analysic. (exiquio)
+				define_singleton_method(tag_name) do |properties={}|
+					raise(
+						ArgumentException,
+						'properties must be a Hash'
+					) unless properties.is_a?(Hash)
+
+					if properties.length > 0
+						properties.each do |property, value|
+							raise(
+								ArgumentException,
+								':attributes and :text are the only allowable keys and their' +
+								' values must be a String respectively.'
+							) unless(
+									[:attributes, :text].include?(property) &&
+									value.is_a(String)
+								)
+						end
+					end
+
+					element_properties = {name: tag_name}
+
+					if properties.has_key?(:attributes)
+						element_properties[:attributes] = properties[:attributes]
+					end
+
+					if properties.has_key?(:text)
+						element_properties = properties[:text]
+					end
+
+					add_open_tag(Element.new(nil, element_properties))
+				end
+
+				define_singleton_method("#{tag_name}_".to_sym) { add_close_tag }
+
+				define_singleton_method("_#{tag_name}_".to_sym) do
+					add_open_tag(Element.new(nil, element_properties))
+					add_close_tag
+				end
+			end
+		end
+
+		private
+
+		# FIXME: Document. (exiqiuio)
+		def add_open_tag(tag)
+			raise ArgumentError, 'Tag must be an Element' unless tag.is_a?(Element)
+
+			@parent = tag if @parent == nil
+
+			until @parent == nil
+				if @parent.children.include?(:close)
+					@parent = @parent.parent
+				else
+					tag.parent = @parent
+					@parent << tag
+					return true
+				end
+			end
+			raise(
+				BodyBuilder5Exception,
+				"The root element is already closed: #{@parent}"
+			)
+		end
+
+		# FIXME: Document
+		def add_close_tag
+			raise(
+				BodyBuilder5Exception,
+				'Attempt to close nil parent'
+			) if @parent == nil
+
+			raise(
+				BodyBuilder5Exception,
+				'Attempt to close closed parent'
+			) if @parent.children.include? :close
+
+			@parent << :close
+
+			return true
 		end
 	end
+
+	public
+
+	# FIXME: Document. (exiqiuo)
+	# FIXME: Test. (exiquio)
+	# TODO: Alias render. (exiquio)
+	def to_s
+	end
 end
+
+# FIXME: Write HTML5 validation code. (exiquio)

@@ -161,31 +161,64 @@ optional keys :attributes and :text which are both Strings in value.</p>
 
 <h3 id="method-c-new-label-Returns%3A">Returns:</h3>
 <ul><li>
-<p><a href="HeMan5.html">HeMan5</a></p>
+<p><a href="HeMan5.html">HeMan5</a> object</p>
 </li></ul>
 
 <h3 id="method-c-new-label-Example%3A">Example:</h3>
 
-<p>document = <a href="HeMan5.html#method-c-new">::new</a></p>
-
-<pre>document.parse do
-        html
-                head
-                        _title_ {text: 'Hello World'}
-                head_
-                body
-                        div {attributes: 'id=&quot;content&quot;'}
-                                _p_ {text: 'What it do, my ninja?'}
-                        div_
-                body_
-        html_
-end</pre>
+<p># FIXME: Provide usage example. (exiquio)</p>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/heman5.rb, line 52</span>
+            <pre><span class="ruby-comment"># File lib/heman5.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+        <span class="ruby-ivar">@parent</span> = <span class="ruby-keyword">nil</span>
+
+        <span class="ruby-constant">VALID_ELEMENTS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tag_name</span>, <span class="ruby-identifier">tag_properties</span><span class="ruby-operator">|</span>
+                <span class="ruby-comment"># HACK: This metaprogramming will be replaced with an ember script that</span>
+                <span class="ruby-comment"># writes HeMan5 and all of its methods to disk to prevent memory leaks</span>
+                <span class="ruby-comment"># and reduce the performance hit. It will also give us a chance to</span>
+                <span class="ruby-comment"># benchmark and compare the performance for further analysic. (exiquio)</span>
+                <span class="ruby-identifier">define_singleton_method</span>(<span class="ruby-identifier">tag_name</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">properties</span>={}<span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">raise</span>(
+                                <span class="ruby-constant">ArgumentException</span>,
+                                <span class="ruby-string">'properties must be a Hash'</span>
+                        ) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                                <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">property</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+                                        <span class="ruby-identifier">raise</span>(
+                                                <span class="ruby-constant">ArgumentException</span>,
+                                                <span class="ruby-string">':attributes and :text are the only allowable keys and their'</span> <span class="ruby-operator">+</span>
+                                                <span class="ruby-string">' values must be a String respectively.'</span>
+                                        ) <span class="ruby-keyword">unless</span>(
+                                                        [<span class="ruby-value">:attributes</span>, <span class="ruby-value">:text</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">property</span>) <span class="ruby-operator">&amp;&amp;</span>
+                                                        <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a</span>(<span class="ruby-constant">String</span>)
+                                                )
+                                <span class="ruby-keyword">end</span>
+                        <span class="ruby-keyword">end</span>
+
+                        <span class="ruby-identifier">element_properties</span> = {<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">tag_name</span>}
+
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:attributes</span>)
+                                <span class="ruby-identifier">element_properties</span>[<span class="ruby-value">:attributes</span>] = <span class="ruby-identifier">properties</span>[<span class="ruby-value">:attributes</span>]
+                        <span class="ruby-keyword">end</span>
+
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:text</span>)
+                                <span class="ruby-identifier">element_properties</span> = <span class="ruby-identifier">properties</span>[<span class="ruby-value">:text</span>]
+                        <span class="ruby-keyword">end</span>
+
+                        <span class="ruby-identifier">add_open_tag</span>(<span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">element_properties</span>))
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-identifier">define_singleton_method</span>(<span class="ruby-node">&quot;#{tag_name}_&quot;</span>.<span class="ruby-identifier">to_sym</span>) { <span class="ruby-identifier">add_close_tag</span> }
+
+                <span class="ruby-identifier">define_singleton_method</span>(<span class="ruby-node">&quot;_#{tag_name}_&quot;</span>.<span class="ruby-identifier">to_sym</span>) <span class="ruby-keyword">do</span>
+                        <span class="ruby-identifier">add_open_tag</span>(<span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">element_properties</span>))
+                        <span class="ruby-identifier">add_close_tag</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
