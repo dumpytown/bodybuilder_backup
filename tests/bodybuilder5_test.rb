@@ -196,7 +196,7 @@ context 'Builder5Exception object' do
 	setup { BodyBuilder5::BodyBuilder5Exception.new }
 
 	asserts('is an Exception') {topic.is_a? Exception}
-	asserts('is an BodyBuilderException') do
+	asserts('is an BodyBuilder5Exception') do
 		topic.is_a? BodyBuilder5::BodyBuilder5Exception
 	end
 end

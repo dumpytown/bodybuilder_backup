@@ -75,8 +75,8 @@ module BodyBuilder5
 		def <<(element)
 			raise(
 				ArgumentError,
-				"Expecting Element, but received #{element.class}"
-			) unless element.kind_of?(Element)
+				"Expecting Element or :close, but received #{element}: #{element.class}"
+			) unless element.kind_of?(Element) || element == :close
 			@children << element
 		end
 
@@ -89,12 +89,22 @@ module BodyBuilder5
 			markup << '<!doctype html>' if @name == :html
 			markup << "<#{@name}>" unless @attributes or @text
 			markup << "<#{@name} #{@attributes}>" if @attributes and not @text
-			markup << "<#{@name}>#{@text}" unless @attributes and not @text
+			markup << "<#{@name}>#{@text}" if text and not @attributes
 			markup << "<#{@name} #{@attributes}>#{@text}" if @attributes and @text
 
-			@children.each do |child|
-				markup << child.render unless child.is_a?(Symbol)
-				markup << "</#{@name}>" if child == :close_tag
+			if @children.length > 0
+				@children.each do |child|
+					raise(
+						BodyBuilder5Exception,
+						'@children must be Elements or :close'
+					) unless child.is_a?(Element) || child == :close
+
+					markup << (
+						child == :close &&
+						"</#{@name}>" ||
+						child.render
+					)
+				end
 			end
 
 			markup.join
@@ -105,13 +115,14 @@ module BodyBuilder5
 		# === Returns:
 		#		String
 		def to_s
-			"Element[#{@name} -> parent: #{@parent}, children: #{@children}, attributes: " +
-			"#{@attributes} text: #{@text}]"
+			"Element[#{@name} -> parent: #{@parent}, children: #{@children}, " +
+			"attributes: #{@attributes} text: #{@text}]"
 		end
 
 		# (Symbol) HTML5 tag name.
 		attr_reader :name
 		# (Element) Parent Element.
+		# FIXME: Rewrite as method. (exiquio)
 		attr_accessor :parent
 		# (Array) Child Elements.
 		attr_reader :children

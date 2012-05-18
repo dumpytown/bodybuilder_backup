@@ -41,6 +41,7 @@ context 'Element class' do
 
 	# Test initialization with correct arguments
 	denies_topic.raises(ArgumentError) { topic.new(nil, {name: :html}) }
+
 	denies_topic.raises(ArgumentError) do
 		topic.new(
 			topic.new(nil, {name: :html}),
@@ -74,7 +75,7 @@ context 'Element object' do
 		)
 	end
 
-	asserts('attribute parent exists and it is an Element') do
+	asserts('attribute parent exists and it is a BodyBuilder5::Element') do
 		topic.respond_to?(:parent) && topic.parent.is_a?(BodyBuilder5::Element)
 	end
 
@@ -111,13 +112,17 @@ context 'Element object' do
 	context ':<<' do
 		asserts_topic.raises(ArgumentError) { topic << '' }
 
-		asserts_topic.raises(ArgumentError) { topic << Array }
+		asserts_topic.raises(ArgumentError) { topic << 'html' }
 
-		asserts_topic.raises(ArgumentError) { topic << Array.new}
+		asserts_topic.raises(ArgumentError) { topic << :html }
+
+		asserts_topic.raises(ArgumentError) { topic << [1, 2, 3 ]}
 
 		asserts_topic.raises(ArgumentError) { topic << BodyBuilder5::Element }
 
 		denies_topic.raises(ArgumentError) { topic << topic}
+
+		denies_topic.raises(ArgumentError) { topic << :close}
 
 		asserts('appends to @children') do
 			child_count = topic.children.length

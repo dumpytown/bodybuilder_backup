@@ -114,3 +114,7 @@ RENDER_SNIPPET = '<p>Pardon my Swahili.'
 ELEMENT_TO_S = 'Element[p -> parent: Element[div -> parent: , children: [], ' +
 	'attributes: id="text" text: ], children: [], attributes:  text: Pardon ' +
 	'my Swahili.]'
+HTML5_DOCUMENT = '<!doctype html><html><head><title>Test Document</title>' +
+	'</head><body><div id="content"><p>This is a test</p></div></body></html>'
+
+

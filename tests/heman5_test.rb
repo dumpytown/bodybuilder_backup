@@ -34,10 +34,45 @@ context 'HeMan5 object' do
 
 	# Test Methods
 	HTML5_ELEMENTS.each do |tag|
-		asserts("responds to \:#{tag}") { topic.respond_to?(tag) }
+		context ":#{tag} methods" do
+			asserts("responds to \:#{tag}") { topic.respond_to?(tag) }
 
-		asserts("responds to \:#{tag}_") { topic.respond_to?("#{tag}_".to_sym) }
+			asserts("responds to \:#{tag}_") { topic.respond_to?("#{tag}_".to_sym) }
 
-		asserts("responds to \:_#{tag}_") { topic.respond_to?("_#{tag}_".to_sym) }
+			asserts("responds to \:_#{tag}_") do
+				topic.respond_to?("_#{tag}_".to_sym)
+			end
+		end
+	end
+
+	context ':render' do
+		asserts('responds to :render') { topic.respond_to?(:render) }
+
+		asserts_topic.raises(BodyBuilder5::BodyBuilder5Exception) { topic.render }
+
+		asserts('returns string == HTML5_DOCUMENT') do
+			topic.html
+				topic.head
+					topic._title_ text: 'Test Document'
+				topic.head_
+				topic.body
+					topic.div attributes: 'id="content"'
+						topic._p_ text: 'This is a test'
+					topic.div_
+				topic.body_
+			topic.html_
+
+			markup = topic.render
+
+			markup.is_a?(String) && markup == HTML5_DOCUMENT
+		end
+	end
+
+	context ':to_s' do
+		asserts('responds to :to_s') { topic.respond_to?(:to_s) }
+
+		asserts('returns a String with length > 0') do
+			topic.to_s.is_a?(String) && topic.to_s.length > 0
+		end
 	end
 end
